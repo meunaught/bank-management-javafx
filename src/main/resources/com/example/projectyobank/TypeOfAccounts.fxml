@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="540.0" prefWidth="720.0" style="-fx-background-color: DEEPSKYBLUE;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectyobank.TypeOfAccountsController">
+   <children>
+      <Button fx:id="CurrentAccount" layoutX="115.0" layoutY="95.0" mnemonicParsing="false" onAction="#Get_Current_Account" prefHeight="72.0" prefWidth="234.0" text="CurrentAccount">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="SavingsAccount" layoutX="375.0" layoutY="95.0" mnemonicParsing="false" onAction="#Get_Savings_Account" prefHeight="72.0" prefWidth="225.0" text="SavingsAccount">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="IslamicAccount" layoutX="114.0" layoutY="222.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="234.0" text="IslamicAccount">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="FixedDeposit" layoutX="378.0" layoutY="220.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="226.0" text="FixedDeposit">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="CreditCard" layoutX="243.0" layoutY="331.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="234.0" text="CreditCard">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="GoBack" layoutY="467.0" mnemonicParsing="false" onAction="#PreviousPage" prefHeight="72.0" prefWidth="151.0" text="Go Back">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

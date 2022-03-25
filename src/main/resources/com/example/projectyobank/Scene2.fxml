@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="540.0" prefWidth="720.0" style="-fx-background-color: #3b5998;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectyobank.Scene2Controller">
+   <children>
+      <Button fx:id="AccountButton" mnemonicParsing="false" onAction="#ChooseAccountType" prefHeight="270.0" prefWidth="200.0" text="Check Balance">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="200.0" mnemonicParsing="false" prefHeight="270.0" prefWidth="200.0" text="Withdraw Money">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="400.0" mnemonicParsing="false" prefHeight="270.0" prefWidth="200.0" text="Deposit Money">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="120.0" layoutY="284.0" mnemonicParsing="false" prefHeight="258.0" prefWidth="200.0" text="Fund Transfer">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="320.0" layoutY="284.0" mnemonicParsing="false" prefHeight="258.0" prefWidth="200.0" text="Get Statement">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="520.0" layoutY="284.0" mnemonicParsing="false" prefHeight="258.0" prefWidth="200.0" text="Ask For Loan">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="LogoutButtton" layoutY="434.0" mnemonicParsing="false" onAction="#Logout" prefHeight="108.0" prefWidth="120.0" text="Log Out">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="Edit_Button" layoutX="600.0" mnemonicParsing="false" prefHeight="270.0" prefWidth="120.0" text="Edit Password">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
