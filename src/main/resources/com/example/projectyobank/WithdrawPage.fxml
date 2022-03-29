@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="990.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectyobank.LoginController">
+   <children>
+      <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="291.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="37.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="37.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" />
+      <Pane accessibleRole="BUTTON" layoutX="82.0" layoutY="244.0" prefHeight="328.0" prefWidth="821.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+         <children>
+            <TextField layoutX="89.0" layoutY="57.0" prefHeight="48.0" prefWidth="620.0" promptText="TK." style="-fx-background-radius: 22; -fx-border-radius: 20; -fx-border-color: #4c4177; -fx-border-width: 2;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <Button layoutX="322.0" layoutY="151.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="153.0" style="-fx-background-radius: 15;" text="WithDraw" textFill="#4c4177">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Label layoutX="68.0" layoutY="24.0" prefHeight="96.0" prefWidth="304.0" text="WithDraw Money" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="169.0" prefHeight="43.0" prefWidth="183.0" text="Enter Amount" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

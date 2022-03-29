@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="990.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.atmmanagementsys.EditCustomerController">
+   <children>
+      <Pane layoutX="44.0" layoutY="60.0" prefHeight="550.0" prefWidth="885.0" style="-fx-background-color: white;">
+         <children>
+            <Label fx:id="confirmation" layoutX="35.0" layoutY="460.0" prefHeight="45.0" prefWidth="360.0" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="cusname" editable="false" layoutX="213.0" layoutY="67.0" prefHeight="45.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 22; -fx-border-radius: 20; -fx-border-color: #4c4177; -fx-border-width: 2;">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="cusemail" editable="false" layoutX="214.0" layoutY="253.0" prefHeight="45.0" prefWidth="300.0" promptText="Email" style="-fx-background-radius: 22; -fx-border-radius: 20; -fx-border-color: #4c4177; -fx-border-width: 2;">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="cusphone" editable="false" layoutX="214.0" layoutY="320.0" prefHeight="45.0" prefWidth="300.0" promptText="Phone" style="-fx-background-radius: 22; -fx-border-radius: 20; -fx-border-color: #4c4177; -fx-border-width: 2;">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="cusbalance" editable="false" layoutX="214.0" layoutY="383.0" prefHeight="45.0" prefWidth="300.0" promptText="Balance" style="-fx-background-radius: 22; -fx-border-radius: 20; -fx-border-color: #4c4177; -fx-border-width: 2;">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </TextField>
+            <Button fx:id="load" layoutX="550.0" layoutY="66.0" mnemonicParsing="false" onAction="#LoadCusInfo" prefHeight="45.0" prefWidth="117.0" text="Load" textFill="#4c4177">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button layoutX="435.0" layoutY="465.0" mnemonicParsing="false" onAction="#DeleteCusInfo" prefHeight="40.0" prefWidth="90.0" text="Delete" textFill="#4c4177">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Label layoutX="39.0" layoutY="74.0" text="Username" textFill="#4c4177">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="39.0" layoutY="152.0" text="Address" textFill="#4c4177">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="327.0" text="Phone" textFill="#4c4177">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="39.0" layoutY="257.0" text="Email" textFill="#4c4177">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="28.0" layoutY="390.0" text="Balance" textFill="#4c4177">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="cusaddress" editable="false" layoutX="226.0" layoutY="140.0" prefHeight="85.0" prefWidth="275.0" promptText="Address" style="-fx-background-radius: ; -fx-border-radius: ; -fx-border-color: #44177; -fx-border-width: 2;" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </TextArea>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

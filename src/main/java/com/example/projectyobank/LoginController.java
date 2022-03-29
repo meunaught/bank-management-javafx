@@ -37,7 +37,7 @@ public class LoginController extends Controller{
                 userobj.setUsername(UsernameField.getText());
                 userobj.setPassword(passwordField.getText());
                 try {
-                    switchToScene("Scene2.fxml", e);
+                    switchToScene("options.fxml", e);
                 } catch (IOException exeption) {
                     System.out.println("Cannot Open Scene2.fxml");
                 }
