@@ -158,7 +158,8 @@ public class Controller {
     {
         try {
             switchToScene(filename,e);
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             System.out.println(filename);
             ex.printStackTrace();
         }
