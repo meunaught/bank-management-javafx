@@ -40,7 +40,8 @@ public class AccountHolders extends Users implements UserMethods{
     }
 
     @Override
-    public void deposit() {
+    public void deposit(int amount) {
+
 
     }
 
@@ -160,6 +161,77 @@ public class AccountHolders extends Users implements UserMethods{
         finally {
             try {
                 preparedStatement.close();
+                conection.close();
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void Update_Database(int amount,double value)
+    {
+        try {
+            conection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conection = SqliteController.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+            System.exit(1);
+        }
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String Query = "SELECT NumberOfWithdraw FROM Login_Info_For_Users " +
+                "WHERE Username = ? and PassWord = ? and AccountNumber = ? and AccountType = ?";
+        try {
+            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement.setString(1,accountHolderObj.getUsername());
+            preparedStatement.setString(2,accountHolderObj.getPassword());
+            preparedStatement.setLong(3,accountHolderObj.getAccountNumber());
+            preparedStatement.setString(4,accountHolderObj.getAccountType());
+
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next())
+            {
+                int temp = resultSet.getInt("NumberOfWithdraw");
+                temp++;
+                preparedStatement = null;
+//                resultSet = null;
+                Query = "UPDATE Login_Info_For_Users SET Balance = ? ,MainBalance = ? ,NumberOfWithDraw = ? WHERE Username = ? and " +
+                        "PassWord = ?  and AccountNumber = ? and AccountType = ?";
+                try{
+                    preparedStatement = conection.prepareStatement(Query);
+                    preparedStatement.setDouble(1,amount);
+                    preparedStatement.setDouble(2,value);
+                    preparedStatement.setInt(3,temp);
+                    preparedStatement.setString(4,accountHolderObj.getUsername());
+                    preparedStatement.setString(5,accountHolderObj.getPassword());
+                    preparedStatement.setLong(6,accountHolderObj.getAccountNumber());
+                    preparedStatement.setString(7,accountHolderObj.getAccountType());
+
+                    int a = preparedStatement.executeUpdate();
+                    System.out.println(a);
+                }
+                catch(SQLException e)
+                {
+                    System.out.println("Cannot Update data in wthdraw");
+                    System.out.println(e);
+                }
+            }
+            else
+            {
+                System.out.println("Cannot Load data in withdraw");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                assert resultSet != null;
+                resultSet.close();
                 conection.close();
             }
             catch (SQLException e)

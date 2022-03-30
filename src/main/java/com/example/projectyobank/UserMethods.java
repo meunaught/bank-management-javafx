@@ -8,7 +8,7 @@ public interface UserMethods {
     public double creditCard_IR = 0.5;
 
     public void withdraw(int amount);
-    public void deposit();
+    public void deposit(int amount);
     public void askForLoan();
     public void checkBalance();
     public void getStatement();
