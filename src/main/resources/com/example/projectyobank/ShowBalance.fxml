@@ -27,7 +27,7 @@
             </Button>
             </children>
         </Pane>
-      <Button fx:id="Go_Back" alignment="CENTER" layoutY="334.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="116.0" text="Go Back" textFill="#5b3c3c">
+      <Button fx:id="Previous" alignment="CENTER" layoutY="334.0" mnemonicParsing="false" onAction="#Go_Back" prefHeight="64.0" prefWidth="116.0" text="Previous" textFill="#5b3c3c">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

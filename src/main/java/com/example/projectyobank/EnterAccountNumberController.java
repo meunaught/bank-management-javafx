@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Scanner;
 
+import static com.example.projectyobank.AccountHolders.type_Of_Functionality;
 import static com.example.projectyobank.Model_Sqlite.conection;
 import static com.example.projectyobank.Users.accountHolderObj;
 import static com.example.projectyobank.Users.userobj;
@@ -30,47 +31,23 @@ public class EnterAccountNumberController extends Controller{
     @FXML
     private Label ErrorShowLabel;
 
-    public boolean Verify_Account_Number(String accountNumber)
-    {
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        String Query = "SELECT Balance, Username, PassWord, AccountNumber, AccountType FROM Login_Info_For_Users WHERE Username = ? and PassWord = ? and AccountNumber = ? and AccountType = ?";
-        try{
-            preparedStatement = conection.prepareStatement(Query);
-            preparedStatement.setString(1,accountHolderObj.getUsername());
-            preparedStatement.setString(2,accountHolderObj.getPassword());
-            preparedStatement.setInt(3,Integer.parseInt(AccountNumberField.getText()));
-            preparedStatement.setString(4,accountHolderObj.getAccountType());
-
-            resultSet = preparedStatement.executeQuery();
-            if(resultSet.next())
-            {
-                accountHolderObj.setBalance(resultSet.getDouble("Balance"));
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        catch(SQLException e)
-        {
-            System.out.println(e);
-            return false;
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-            return false;
-        }
-    }
-
-    public void ShowBalance(ActionEvent e) {
+    public void Verify(ActionEvent e) {
         if (Verify_Account_Number(AccountNumberField.getText())) {
-            try {
-                switchToScene("ShowBalance.fxml",e);
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            if(type_Of_Functionality.equals("Check Balance"))
+            {
+                giveFilename("ShowBalance.fxml",e);
+            }
+            else if(type_Of_Functionality.equals("Withdraw"))
+            {
+                giveFilename("WithdrawPage.fxml",e);
+            }
+            else if(type_Of_Functionality.equals("Deposit"))
+            {
+                giveFilename("DepositPage.fxml",e);
+            }
+            else if(type_Of_Functionality.equals("FundTransfer"))
+            {
+                giveFilename("FundTransferPage.fxml",e);
             }
         }
         else {
@@ -78,4 +55,13 @@ public class EnterAccountNumberController extends Controller{
         }
     }
 
+    public void Go_Back(ActionEvent e)
+    {
+        try {
+            switchToScene("TypeOfAccounts.fxml",e);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            System.out.println("Cannot go back to TypeOfAccounts.fxml from EnterAccountNumberController");
+        }
+    }
 }

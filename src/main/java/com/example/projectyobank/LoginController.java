@@ -12,18 +12,14 @@ public class LoginController extends Controller{
 
     @FXML
     private Button LoginButton;
-
     @FXML
     private TextField UsernameField;
     @FXML
     private PasswordField  passwordField;
-
     @FXML
     private Label ErrorShowLabel;
-
     @FXML
     private RadioButton UserRadioButton;
-
     @FXML
     private RadioButton AdminRadioButton;
 
@@ -37,9 +33,10 @@ public class LoginController extends Controller{
                 userobj.setUsername(UsernameField.getText());
                 userobj.setPassword(passwordField.getText());
                 try {
-                    switchToScene("Scene2.fxml", e);
-                } catch (IOException exeption) {
-                    System.out.println("Cannot Open Scene2.fxml");
+                    switchToScene("options.fxml", e);
+                } catch (IOException exception) {
+                    System.out.println("Cannot Open options.fxml");
+                    System.out.println(exception);
                 }
             }
             else

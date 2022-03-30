@@ -12,10 +12,23 @@ public class ShowBalanceController extends Controller{
     private Label Balance;
     @FXML
     private Button Balance_Button;
+    @FXML
+    private Button Previous;
 
     public void Get_Balance(ActionEvent e)
     {
         Balance.setText(String.valueOf(accountHolderObj.getBalance()));
     }
 
+    public void Go_Back(ActionEvent e)
+    {
+        try{
+            switchToScene("EnterAccountNumber.fxml",e);
+        }
+        catch(Exception exception)
+        {
+            System.out.println(e);
+            System.out.println("Previous Button of Check Balance Not Working");
+        }
+    }
 }

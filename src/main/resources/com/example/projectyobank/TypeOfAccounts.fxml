@@ -16,17 +16,17 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="IslamicAccount" layoutX="114.0" layoutY="222.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="234.0" text="IslamicAccount">
+      <Button fx:id="IslamicAccount" layoutX="114.0" layoutY="222.0" mnemonicParsing="false" onAction="#Get_Islamic_Account" prefHeight="72.0" prefWidth="234.0" text="IslamicAccount">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="FixedDeposit" layoutX="378.0" layoutY="220.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="226.0" text="FixedDeposit">
+      <Button fx:id="FixedDeposit" layoutX="378.0" layoutY="220.0" mnemonicParsing="false" onAction="#Get_FixedDeposit" prefHeight="72.0" prefWidth="226.0" text="FixedDeposit">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="CreditCard" layoutX="243.0" layoutY="331.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="234.0" text="CreditCard">
+      <Button fx:id="CreditCard" layoutX="243.0" layoutY="331.0" mnemonicParsing="false" onAction="#Get_CreditCard_Account" prefHeight="72.0" prefWidth="234.0" text="CreditCard">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

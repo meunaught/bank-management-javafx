@@ -27,67 +27,68 @@ public class TypeOfAccountsController extends Controller{
     public void PreviousPage(ActionEvent e)
     {
         try{
-            switchToScene("Scene2.fxml",e);
+            switchToScene("options.fxml",e);
         }
         catch(IOException exception)
         {
-            System.out.println("Cannot go back to Scene2.fxml");
+            System.out.println("Cannot go back to options.fxml");
         }
+    }
+
+    public void Setup_Account(String accountType)
+    {
+        if(accountType.equals("Current"))
+        {
+            accountHolderObj = new CurrentAccount();
+        }
+        else if(accountType.equals("Savings"))
+        {
+            accountHolderObj = new SavingsAccount();
+        }
+        else if(accountType.equals("Islamic"))
+        {
+            accountHolderObj = new IslamicAccount();
+        }
+        else if(accountType.equals("FixedDeposit"))
+        {
+            accountHolderObj = new FIxedDepositAccount();
+        }
+        else if(accountType.equals("CreditCard"))
+        {
+            accountHolderObj = new CreditCardAccount();
+        }
+        accountHolderObj.setUsername(userobj.getUsername());
+        accountHolderObj.setPassword(userobj.getPassword());
+        accountHolderObj.setAccountType(accountType);
     }
 
     public void Get_Current_Account(ActionEvent e)
     {
-        accountHolderObj = new CurrentAccount();
-        accountHolderObj.setUsername(userobj.getUsername());
-        accountHolderObj.setPassword(userobj.getPassword());
-        accountHolderObj.setAccountType("Current");
-        GoToAskAccountNumberFxml(e);
+        Setup_Account("Current");
+        giveFilename("EnterAccountNumber.fxml",e);
     }
 
     public void Get_Savings_Account(ActionEvent e)
     {
-        accountHolderObj = new SavingsAccount();
-        accountHolderObj.setUsername(userobj.getUsername());
-        accountHolderObj.setPassword(userobj.getPassword());
-        accountHolderObj.setAccountType("Savings");
-        GoToAskAccountNumberFxml(e);
+        Setup_Account("Savings");
+        giveFilename("EnterAccountNumber.fxml",e);
     }
 
     public void Get_Islamic_Account(ActionEvent e)
     {
-        accountHolderObj = new IslamicAccount();
-        accountHolderObj.setUsername(userobj.getUsername());
-        accountHolderObj.setPassword(userobj.getPassword());
-        accountHolderObj.setAccountType("Islamic");
-        GoToAskAccountNumberFxml(e);
+        Setup_Account("Islamic");
+        giveFilename("EnterAccountNumber.fxml",e);
     }
 
     public void Get_CreditCard_Account(ActionEvent e)
     {
-        accountHolderObj = new CreditCardAccount();
-        accountHolderObj.setUsername(userobj.getUsername());
-        accountHolderObj.setPassword(userobj.getPassword());
-        accountHolderObj.setAccountType("CreditCard");
-        GoToAskAccountNumberFxml(e);
+        Setup_Account("CreditCard");
+        giveFilename("EnterAccountNumber.fxml",e);
     }
 
-    public void Get_FixedDeposit_Account(ActionEvent e)
+    public void Get_FixedDeposit(ActionEvent e)
     {
-        accountHolderObj = new FIxedDepositAccount();
-        accountHolderObj.setUsername(userobj.getUsername());
-        accountHolderObj.setPassword(userobj.getPassword());
-        accountHolderObj.setAccountType("FixedDeposit");
-        GoToAskAccountNumberFxml(e);
-    }
-
-    public void GoToAskAccountNumberFxml(ActionEvent e)
-    {
-        try{
-            switchToScene("EnterAccountNumber.fxml",e);
-        }
-        catch(IOException exception)
-        {
-            System.out.println("Cannot go to EnterAccountNumber.fxml file");
-        }
+        Setup_Account("FixedDeposit");
+        giveFilename("EnterAccountNumber.fxml",e);
     }
 }
