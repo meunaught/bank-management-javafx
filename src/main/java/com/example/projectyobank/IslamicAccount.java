@@ -1,5 +1,9 @@
 package com.example.projectyobank;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Region;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
@@ -15,7 +19,7 @@ public class IslamicAccount extends AccountHolders{
             double passed_Hours = accountHolderObj.Count_Hours(calendar,arrayList,Year,Month,Day,Hour,Minute,Second);
 
             Random random  = new Random();
-            int temp = random.nextInt() % 5;
+            double temp = Math.abs(random.nextInt() % 5);
 
             if(passed_Hours>=1) {
                 accountHolderObj.setBalance(accountHolderObj.getBalance()*Math.pow((1+(temp/100)),passed_Hours));
@@ -28,4 +32,9 @@ public class IslamicAccount extends AccountHolders{
         }
     }
 
+    @Override
+    public double maxWithdraw()
+    {
+        return 10000.0;
+    }
 }

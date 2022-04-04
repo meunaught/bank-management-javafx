@@ -37,9 +37,9 @@ public class CurrentAccount extends AccountHolders{
     }
 
     @Override
-    public void withdraw(int amount)
+    public void withdraw(double amount)
     {
-        if(accountHolderObj.getBalance()<amount)
+        if(accountHolderObj.getBalance()<accountHolderObj.getWithdrawAmount())
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Withdraw Money");
@@ -48,7 +48,7 @@ public class CurrentAccount extends AccountHolders{
             alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
             alert.show();
         }
-        else if(accountHolderObj.getMain_Balance()>(accountHolderObj.getBalance()-amount))
+        else if(accountHolderObj.getMain_Balance()>(accountHolderObj.getBalance()-accountHolderObj.getWithdrawAmount()))
         {
             ButtonType type = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -60,8 +60,7 @@ public class CurrentAccount extends AccountHolders{
             alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
             if (alert.showAndWait().get() == ButtonType.OK) {
-                double now = accountHolderObj.getBalance()-amount;
-                Update_Database((int) Math.round(now),accountHolderObj.getBalance()-amount);
+                Update_Database((accountHolderObj.getBalance()-amount),accountHolderObj.getBalance()-amount);
             }
         }
         else
@@ -73,23 +72,8 @@ public class CurrentAccount extends AccountHolders{
             alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
             if (alert.showAndWait().get() == ButtonType.OK) {
-                double now = accountHolderObj.getBalance()-amount;
-                Update_Database((int) Math.round(now),accountHolderObj.getMain_Balance());
+                Update_Database((accountHolderObj.getBalance()-amount),accountHolderObj.getMain_Balance());
             }
-        }
-    }
-
-    @Override
-    public void deposit(int amount) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Deposit Money");
-        alert.setHeaderText("");
-        alert.setContentText("TK: " + amount + " will be debited from your account\nDo you want to confirm?");
-        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            double now = accountHolderObj.getBalance()+amount;
-            Update_Database((int) Math.round(now),accountHolderObj.getMain_Balance() + amount);
         }
     }
 }

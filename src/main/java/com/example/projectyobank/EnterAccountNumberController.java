@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,26 +33,25 @@ public class EnterAccountNumberController extends Controller{
     private Label ErrorShowLabel;
 
     public void Verify(ActionEvent e) {
-        if (Verify_Account_Number(AccountNumberField.getText())) {
-            if(type_Of_Functionality.equals("Check Balance"))
-            {
-                giveFilename("ShowBalance.fxml",e);
-            }
-            else if(type_Of_Functionality.equals("Withdraw"))
-            {
-                giveFilename("WithdrawPage.fxml",e);
-            }
-            else if(type_Of_Functionality.equals("Deposit"))
-            {
-                giveFilename("DepositPage.fxml",e);
-            }
-            else if(type_Of_Functionality.equals("FundTransfer"))
-            {
-                giveFilename("FundTransferPage.fxml",e);
+        try {
+            if (Verify_Account_Number(AccountNumberField.getText())) {
+                if (type_Of_Functionality.equals("Check Balance")) {
+                    giveFilename("ShowBalance.fxml", e);
+                } else if (type_Of_Functionality.equals("Withdraw")) {
+                    giveFilename("WithdrawPage.fxml", e);
+                } else if (type_Of_Functionality.equals("Deposit")) {
+                    giveFilename("DepositPage.fxml", e);
+                } else if (type_Of_Functionality.equals("FundTransfer")) {
+                    giveFilename("FundTransferPage.fxml", e);
+                }
+            } else {
+                ErrorShowLabel.setText("Invalid Account Number!!!");
             }
         }
-        else {
-            ErrorShowLabel.setText("Invalid Account Number!!!");
+        catch(Exception exception)
+        {
+            System.out.println(exception);
+            ErrorShowLabel.setText("Please Enter Your Account Number!");
         }
     }
 

@@ -18,7 +18,7 @@ public class DepositController extends  Controller{
     @FXML
     private Button prevButton;
     public void DepositMoney(ActionEvent e) {
-        accountHolderObj.deposit(Integer.parseInt(depositfield.getText()));
+        accountHolderObj.deposit(Double.parseDouble(depositfield.getText()));
     }
     public void previous(ActionEvent e) {
         try{

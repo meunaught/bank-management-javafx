@@ -17,7 +17,8 @@ public class WithdrawPageController extends Controller{
 
     public void Withdraw_Money(ActionEvent e)
     {
-        accountHolderObj.withdraw(Integer.parseInt(WithdrawAmountField.getText()));
+        accountHolderObj.setWithdrawAmount(Double.parseDouble(WithdrawAmountField.getText()));
+        accountHolderObj.withdraw(Double.parseDouble(WithdrawAmountField.getText()));
     }
 
     public void Previous(ActionEvent e)

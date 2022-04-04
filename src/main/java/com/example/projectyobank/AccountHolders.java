@@ -1,5 +1,9 @@
 package com.example.projectyobank;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Region;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +19,7 @@ public class AccountHolders extends Users implements UserMethods{
     private String accountType;
     private long accountNumber;
     public static String type_Of_Functionality ;
+    private double withdrawAmount = 0;
 
     public void setBalance(double balance)
     {
@@ -34,15 +39,48 @@ public class AccountHolders extends Users implements UserMethods{
     public void setMain_Balance(double main_Balance){ this.main_Balance = main_Balance ;}
     public double getMain_Balance(){return this.main_Balance ;}
 
-    @Override
-    public void withdraw(int amount) {
+    public void setWithdrawAmount(double amount) {this.withdrawAmount = amount;}
+    public double getWithdrawAmount(){return this.withdrawAmount;}
 
+
+    @Override
+    public void withdraw(double amount)
+    {
+        if(accountHolderObj.getBalance()<accountHolderObj.getWithdrawAmount())
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Withdraw Money");
+            alert.setHeaderText("");
+            alert.setContentText("Not sufficient balance in your account!!!");
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.show();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Withdraw Money");
+            alert.setHeaderText("");
+            alert.setContentText("TK: " + amount + " will be credited from your account\nDo you want to confirm?");
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                Update_Database((accountHolderObj.getBalance()-amount),accountHolderObj.getMain_Balance());
+            }
+        }
     }
 
+
     @Override
-    public void deposit(int amount) {
+    public void deposit(double amount) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Deposit Money");
+        alert.setHeaderText("");
+        alert.setContentText("TK: " + amount + " will be debited from your account\nDo you want to confirm?");
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
-
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            Update_Database((accountHolderObj.getBalance()+amount),accountHolderObj.getMain_Balance() + amount);
+        }
     }
 
     @Override
@@ -68,6 +106,11 @@ public class AccountHolders extends Users implements UserMethods{
     public void createBalance(int Year,int Month,int Day,int Hour,int Minute,int Second)
     {
 
+    }
+
+    public double maxWithdraw()
+    {
+        return 1000000000000.0;
     }
 
     public int getProperDifference(int first_time,int second_time,int differ,ArrayList<Integer> arrayList,int index)
@@ -131,7 +174,7 @@ public class AccountHolders extends Users implements UserMethods{
         }
         PreparedStatement preparedStatement = null;
         String Query = "UPDATE Login_Info_For_Users SET Balance = ? ,Year = ? ,Month = ? ,Day = ? ,Hour = ? ,Minute = ? ,Second = ?," +
-                "NumberOfWithdraw = ? ,NumberOfDeposit = ? " +
+                "WithdrawAmount = ? " +
                 "WHERE Username = ? and PassWord = ? and AccountType = ? and AccountNumber = ?";
         try{
             preparedStatement = conection.prepareStatement(Query);
@@ -142,12 +185,11 @@ public class AccountHolders extends Users implements UserMethods{
             preparedStatement.setInt(5,calendar.get(Calendar.HOUR_OF_DAY));
             preparedStatement.setInt(6,calendar.get(Calendar.MINUTE));
             preparedStatement.setInt(7,calendar.get(Calendar.SECOND));
-            preparedStatement.setInt(8,0);
-            preparedStatement.setInt(9,0);
-            preparedStatement.setString(10,accountHolderObj.getUsername());
-            preparedStatement.setString(11,accountHolderObj.getPassword());
-            preparedStatement.setString(12,accountHolderObj.getAccountType());
-            preparedStatement.setLong(13,accountHolderObj.getAccountNumber());
+            preparedStatement.setDouble(8,0);
+            preparedStatement.setString(9,accountHolderObj.getUsername());
+            preparedStatement.setString(10,accountHolderObj.getPassword());
+            preparedStatement.setString(11,accountHolderObj.getAccountType());
+            preparedStatement.setLong(12,accountHolderObj.getAccountNumber());
 
             int a = preparedStatement.executeUpdate();
             System.out.println(a);
@@ -169,7 +211,7 @@ public class AccountHolders extends Users implements UserMethods{
             }
         }
     }
-    public void Update_Database(int amount,double value)
+    public void Update_Database(double amount,double value_MainBalance)
     {
         try {
             conection.close();
@@ -183,7 +225,7 @@ public class AccountHolders extends Users implements UserMethods{
         }
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        String Query = "SELECT NumberOfWithdraw FROM Login_Info_For_Users " +
+        String Query = "SELECT WithdrawAmount FROM Login_Info_For_Users " +
                 "WHERE Username = ? and PassWord = ? and AccountNumber = ? and AccountType = ?";
         try {
             preparedStatement = conection.prepareStatement(Query);
@@ -195,29 +237,45 @@ public class AccountHolders extends Users implements UserMethods{
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next())
             {
-                int temp = resultSet.getInt("NumberOfWithdraw");
-                temp++;
-                preparedStatement = null;
-//                resultSet = null;
-                Query = "UPDATE Login_Info_For_Users SET Balance = ? ,MainBalance = ? ,NumberOfWithDraw = ? WHERE Username = ? and " +
-                        "PassWord = ?  and AccountNumber = ? and AccountType = ?";
-                try{
-                    preparedStatement = conection.prepareStatement(Query);
-                    preparedStatement.setDouble(1,amount);
-                    preparedStatement.setDouble(2,value);
-                    preparedStatement.setInt(3,temp);
-                    preparedStatement.setString(4,accountHolderObj.getUsername());
-                    preparedStatement.setString(5,accountHolderObj.getPassword());
-                    preparedStatement.setLong(6,accountHolderObj.getAccountNumber());
-                    preparedStatement.setString(7,accountHolderObj.getAccountType());
-
-                    int a = preparedStatement.executeUpdate();
-                    System.out.println(a);
-                }
-                catch(SQLException e)
+                double temp = resultSet.getDouble("WithdrawAmount");
+                if(temp + accountHolderObj.getWithdrawAmount() > accountHolderObj.maxWithdraw() && type_Of_Functionality.equals("Withdraw") )
                 {
-                    System.out.println("Cannot Update data in wthdraw");
-                    System.out.println(e);
+                    System.out.println("Beshi taka uthtese");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Withdraw Money");
+                    alert.setHeaderText("");
+                    alert.setContentText("You can't withdraw more than " + accountHolderObj.maxWithdraw() + " in 2 hours from " +
+                            accountHolderObj.getAccountType() + " account!!!");
+                    alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+                    if (alert.showAndWait().get() == ButtonType.OK) {
+                        return ;
+                    }
+                }
+                else
+                {
+                    preparedStatement = null;
+                    //resultSet = null;
+                    Query = "UPDATE Login_Info_For_Users SET Balance = ? ,MainBalance = ? ,WithdrawAmount = ? WHERE Username = ? and " +
+                            "PassWord = ?  and AccountNumber = ? and AccountType = ?";
+                    try{
+                        preparedStatement = conection.prepareStatement(Query);
+                        preparedStatement.setDouble(1,amount);
+                        preparedStatement.setDouble(2,value_MainBalance);
+                        preparedStatement.setDouble(3,temp + accountHolderObj.getWithdrawAmount());
+                        preparedStatement.setString(4,accountHolderObj.getUsername());
+                        preparedStatement.setString(5,accountHolderObj.getPassword());
+                        preparedStatement.setLong(6,accountHolderObj.getAccountNumber());
+                        preparedStatement.setString(7,accountHolderObj.getAccountType());
+
+                        int a = preparedStatement.executeUpdate();
+                        System.out.println(a);
+                    }
+                    catch(SQLException e)
+                    {
+                        System.out.println("Cannot Update data in withdraw");
+                        System.out.println(e);
+                    }
+
                 }
             }
             else
@@ -226,6 +284,10 @@ public class AccountHolders extends Users implements UserMethods{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
         }
         finally {
             try {

@@ -16,7 +16,7 @@ public class FIxedDepositAccount extends AccountHolders{
             passed_Hours /= 12;
 
             if(passed_Hours>=1) {
-                accountHolderObj.setBalance(accountHolderObj.getBalance()*Math.pow((1+(fixedDeposit_IR/100)),passed_Hours));
+                accountHolderObj.setBalance(accountHolderObj.getBalance()*2);
                 System.out.println("Fixed Deposit" + accountHolderObj.getBalance());
                 accountHolderObj.Update_Database(calendar);
             }
@@ -26,4 +26,5 @@ public class FIxedDepositAccount extends AccountHolders{
             System.out.println(e);
         }
     }
+
 }

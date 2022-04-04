@@ -1,5 +1,9 @@
 package com.example.projectyobank;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Region;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -23,5 +27,11 @@ public class CreditCardAccount extends AccountHolders{
             System.out.println("ArrayList e problem in creditcard account");
             System.out.println(e);
         }
+    }
+
+    @Override
+    public double maxWithdraw()
+    {
+        return 20000.0;
     }
 }
