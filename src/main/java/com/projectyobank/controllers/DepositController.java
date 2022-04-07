@@ -1,4 +1,4 @@
-package com.example.projectyobank;
+package com.projectyobank;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,9 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
-import static com.example.projectyobank.Users.accountHolderObj;
 
 public class DepositController extends  Controller{
     @FXML
@@ -18,7 +15,7 @@ public class DepositController extends  Controller{
     @FXML
     private Button prevButton;
     public void DepositMoney(ActionEvent e) {
-        accountHolderObj.deposit(Double.parseDouble(depositfield.getText()));
+        Users.accountHolderObj.deposit(Double.parseDouble(depositfield.getText()));
     }
     public void previous(ActionEvent e) {
         try{

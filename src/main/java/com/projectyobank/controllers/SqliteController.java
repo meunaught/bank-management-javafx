@@ -1,4 +1,4 @@
-package com.example.projectyobank;
+package com.projectyobank;
 
 import java.sql.*;
 

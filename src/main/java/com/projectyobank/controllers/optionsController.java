@@ -1,14 +1,12 @@
-package com.example.projectyobank;
+package com.projectyobank;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.skin.ChoiceBoxSkin;
 
 import java.io.IOException;
 
-import static com.example.projectyobank.AccountHolders.type_Of_Functionality;
-import static com.example.projectyobank.Users.userobj;
+import static com.projectyobank.AccountHolders.type_Of_Functionality;
 
 public class optionsController extends  Controller{
     @FXML

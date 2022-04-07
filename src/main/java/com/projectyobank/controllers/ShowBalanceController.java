@@ -1,11 +1,11 @@
-package com.example.projectyobank;
+package com.projectyobank;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-import static com.example.projectyobank.Users.accountHolderObj;
+import static com.projectyobank.Users.accountHolderObj;
 
 public class ShowBalanceController extends Controller{
     @FXML

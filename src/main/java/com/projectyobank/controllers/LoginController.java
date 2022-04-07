@@ -1,6 +1,4 @@
-package com.example.projectyobank;
-
-import static com.example.projectyobank.Users.userobj;
+package com.projectyobank;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,9 +27,9 @@ public class LoginController extends Controller{
 
             if(Verify_User_Login(UsernameField.getText(),passwordField.getText()))
             {
-                userobj = new AccountHolders();
-                userobj.setUsername(UsernameField.getText());
-                userobj.setPassword(passwordField.getText());
+                Users.userobj = new AccountHolders();
+                Users.userobj.setUsername(UsernameField.getText());
+                Users.userobj.setPassword(passwordField.getText());
                 try {
                     switchToScene("options.fxml", e);
                 } catch (IOException exception) {
