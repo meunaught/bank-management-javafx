@@ -1,4 +1,4 @@
-package com.example.projectyobank;
+package com.projectyobank;
 
 abstract public class Users {
     private String username;

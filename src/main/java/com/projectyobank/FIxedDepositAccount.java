@@ -1,4 +1,4 @@
-package com.example.projectyobank;
+package com.projectyobank;
 
 import java.util.ArrayList;
 import java.util.Calendar;

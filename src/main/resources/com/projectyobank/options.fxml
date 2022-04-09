@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="720.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectyobank.optionsController">
+<AnchorPane prefHeight="540.0" prefWidth="720.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.optionsController">
     <children>
         <Button fx:id="BalanceButton" layoutX="48.0" layoutY="96.0" mnemonicParsing="false" onAction="#ChooseBalance" prefHeight="87.0" prefWidth="200.0" style="-fx-background-radius: 15;" text="Check Balance">
             <font>

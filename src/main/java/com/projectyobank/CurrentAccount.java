@@ -1,18 +1,12 @@
-package com.example.projectyobank;
+package com.projectyobank;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import static com.example.projectyobank.Model_Sqlite.conection;
 
 public class CurrentAccount extends AccountHolders{
 

@@ -1,5 +1,7 @@
-package com.projectyobank;
+package com.projectyobank.controllers;
 
+import com.projectyobank.AccountHolders;
+import com.projectyobank.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

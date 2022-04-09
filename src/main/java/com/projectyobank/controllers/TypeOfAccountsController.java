@@ -1,5 +1,6 @@
-package com.projectyobank;
+package com.projectyobank.controllers;
 
+import com.projectyobank.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

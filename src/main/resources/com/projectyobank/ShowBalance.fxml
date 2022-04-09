@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="399.0" prefWidth="768.0" style="-fx-background-color: #5b3c3c;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectyobank.ShowBalanceController">
+<AnchorPane id="AnchorPane" prefHeight="399.0" prefWidth="768.0" style="-fx-background-color: #5b3c3c;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.ShowBalanceController">
     <children>
         <Pane layoutX="178.0" layoutY="58.0" prefHeight="282.0" prefWidth="412.0" style="-fx-background-color: white; -fx-background-radius: 10;">
             <children>

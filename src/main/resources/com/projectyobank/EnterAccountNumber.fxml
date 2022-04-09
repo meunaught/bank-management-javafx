@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="598.0" prefWidth="720.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectyobank.EnterAccountNumberController">
+<AnchorPane prefHeight="598.0" prefWidth="720.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.EnterAccountNumberController">
    <children>
       <Pane layoutX="177.0" layoutY="141.0" prefHeight="315.0" prefWidth="365.0" style="-fx-background-color: White;">
          <children>

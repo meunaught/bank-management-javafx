@@ -1,9 +1,4 @@
-package com.example.projectyobank;
-
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.layout.Region;
+package com.projectyobank;
 
 import java.util.ArrayList;
 import java.util.Calendar;

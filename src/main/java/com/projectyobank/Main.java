@@ -1,4 +1,4 @@
-package com.example.projectyobank;
+package com.projectyobank;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root  = FXMLLoader.load(getClass().getResource("LOGINPAGE.fxml"));
+        Parent root  = FXMLLoader.load(Main.class.getResource("LOGINPAGE.fxml"));
         Scene scene = new Scene(root, Color.DEEPSKYBLUE);
         stage.setScene(scene);
         stage.setTitle("Yo Online Bank");

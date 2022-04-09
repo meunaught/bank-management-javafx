@@ -1,4 +1,4 @@
-package com.projectyobank;
+package com.projectyobank.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -1,5 +1,6 @@
-package com.example.projectyobank;
+package com.projectyobank;
 
+import com.projectyobank.controllers.SqliteController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Region;
@@ -9,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import static com.example.projectyobank.Model_Sqlite.conection;
 
 public class AccountHolders extends Users implements UserMethods{
 
@@ -163,12 +162,12 @@ public class AccountHolders extends Users implements UserMethods{
     public void Update_Database(Calendar calendar)
     {
         try {
-            conection.close();
+            Model_Sqlite.conection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        conection = SqliteController.Connector();
-        if (conection == null) {
+        Model_Sqlite.conection = SqliteController.Connector();
+        if (Model_Sqlite.conection == null) {
             System.out.println("connection not successful");
             System.exit(1);
         }
@@ -177,7 +176,7 @@ public class AccountHolders extends Users implements UserMethods{
                 "WithdrawAmount = ? " +
                 "WHERE Username = ? and PassWord = ? and AccountType = ? and AccountNumber = ?";
         try{
-            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement = Model_Sqlite.conection.prepareStatement(Query);
             preparedStatement.setDouble(1,accountHolderObj.getBalance());
             preparedStatement.setInt(2,calendar.get(Calendar.YEAR));
             preparedStatement.setInt(3,calendar.get(Calendar.MONTH));
@@ -203,7 +202,7 @@ public class AccountHolders extends Users implements UserMethods{
         finally {
             try {
                 preparedStatement.close();
-                conection.close();
+                Model_Sqlite.conection.close();
             }
             catch (SQLException e)
             {
@@ -214,12 +213,12 @@ public class AccountHolders extends Users implements UserMethods{
     public void Update_Database(double amount,double value_MainBalance)
     {
         try {
-            conection.close();
+            Model_Sqlite.conection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        conection = SqliteController.Connector();
-        if (conection == null) {
+        Model_Sqlite.conection = SqliteController.Connector();
+        if (Model_Sqlite.conection == null) {
             System.out.println("connection not successful");
             System.exit(1);
         }
@@ -228,7 +227,7 @@ public class AccountHolders extends Users implements UserMethods{
         String Query = "SELECT WithdrawAmount FROM Login_Info_For_Users " +
                 "WHERE Username = ? and PassWord = ? and AccountNumber = ? and AccountType = ?";
         try {
-            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement = Model_Sqlite.conection.prepareStatement(Query);
             preparedStatement.setString(1,accountHolderObj.getUsername());
             preparedStatement.setString(2,accountHolderObj.getPassword());
             preparedStatement.setLong(3,accountHolderObj.getAccountNumber());
@@ -258,7 +257,7 @@ public class AccountHolders extends Users implements UserMethods{
                     Query = "UPDATE Login_Info_For_Users SET Balance = ? ,MainBalance = ? ,WithdrawAmount = ? WHERE Username = ? and " +
                             "PassWord = ?  and AccountNumber = ? and AccountType = ?";
                     try{
-                        preparedStatement = conection.prepareStatement(Query);
+                        preparedStatement = Model_Sqlite.conection.prepareStatement(Query);
                         preparedStatement.setDouble(1,amount);
                         preparedStatement.setDouble(2,value_MainBalance);
                         preparedStatement.setDouble(3,temp + accountHolderObj.getWithdrawAmount());
@@ -294,7 +293,7 @@ public class AccountHolders extends Users implements UserMethods{
                 preparedStatement.close();
                 assert resultSet != null;
                 resultSet.close();
-                conection.close();
+                Model_Sqlite.conection.close();
             }
             catch (SQLException e)
             {

@@ -1,5 +1,8 @@
-package com.projectyobank;
+package com.projectyobank.controllers;
 
+import com.projectyobank.Main;
+import com.projectyobank.Model_Sqlite;
+import com.projectyobank.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -77,7 +80,7 @@ public class Controller {
 
     public void switchToScene(String FileName,ActionEvent e) throws IOException
     {
-        root  = FXMLLoader.load(getClass().getResource(FileName));
+        root  = FXMLLoader.load(Main.class.getResource(FileName));
         stage  = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene =  new Scene(root, Color.DEEPSKYBLUE);
         stage.setScene(scene);
