@@ -1,48 +1,40 @@
 package com.projectyobank.controllers;
 
-import com.projectyobank.AccountHolders;
-import com.projectyobank.Users;
+import com.projectyobank.database.dbcontroller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
 public class LoginController extends Controller{
-
     @FXML
     private Button LoginButton;
     @FXML
     private TextField UsernameField;
     @FXML
-    private PasswordField  passwordField;
+    private PasswordField passwordField;
     @FXML
     private Label ErrorShowLabel;
-    @FXML
-    private RadioButton UserRadioButton;
-    @FXML
-    private RadioButton AdminRadioButton;
 
-    public void Login(ActionEvent e)
-    {
-        if(UserRadioButton.isSelected()) {
-
-            if(Verify_User_Login(UsernameField.getText(),passwordField.getText()))
-            {
-                Users.userobj = new AccountHolders();
-                Users.userobj.setUsername(UsernameField.getText());
-                Users.userobj.setPassword(passwordField.getText());
-                try {
-                    switchToScene("options.fxml", e);
-                } catch (IOException exception) {
-                    System.out.println("Cannot Open options.fxml");
-                    System.out.println(exception);
-                }
+    public void Login(ActionEvent e) {
+//        System.out.println("login method e dhuksee");
+        if(dbcontroller.getInstance().Verify_User_Login(UsernameField.getText(), passwordField.getText())) {
+            try {
+//                System.out.println("switchToScene er agei asi");
+                switchToScene("view/AdminPage.fxml", e);
             }
-            else
-            {
-                ErrorShowLabel.setText("Invalid Username or Password");
+            catch (IOException exception) {
+                exception.printStackTrace();
             }
         }
+        else {
+            ErrorShowLabel.setText("Invalid Username or Password");
+
+        }
     }
+
 }

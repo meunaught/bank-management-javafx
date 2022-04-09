@@ -3,14 +3,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="720.0" style="-fx-background-color: #3b5998;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="720.0" style="-fx-background-color: #3b5998;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.LoginController">
    <children>
       <Label layoutX="109.0" layoutY="169.0" prefHeight="42.0" prefWidth="129.0" text=" USERNAME :" textFill="WHITE">
          <font>
@@ -31,19 +29,6 @@
       <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="291.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="37.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="37.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" />
-      <RadioButton fx:id="UserRadioButton" layoutX="253.0" layoutY="100.0" mnemonicParsing="false" text="USER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="User" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="AdiminRadioButton" layoutX="360.0" layoutY="100.0" mnemonicParsing="false" text="ADMIN" textFill="WHITE" toggleGroup="$User">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </RadioButton>
       <Label fx:id="ErrorShowLabel" alignment="CENTER" layoutY="55.0" prefHeight="18.0" prefWidth="720.0" textFill="#ef0404">
          <font>
             <Font name="System Bold" size="18.0" />

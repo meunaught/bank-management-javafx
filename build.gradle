@@ -5,7 +5,7 @@ plugins {
     id 'org.beryx.jlink' version '2.24.1'
 }
 
-group 'com.example'
+group 'com'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -38,6 +38,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
     implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
+
 }
 
 test {

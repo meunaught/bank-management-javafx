@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="1223.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.atmmanagementsys.AdminPageController">
+<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="1223.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.AdminPageController">
    <children>
-      <Label fx:id="welcome" alignment="TOP_CENTER" layoutX="31.0" layoutY="37.0" prefHeight="48.0" prefWidth="266.0" text="Administration Mode" textFill="WHITE">
+      <Label fx:id="welcome" alignment="TOP_CENTER" layoutX="-44.0" layoutY="37.0" prefHeight="48.0" prefWidth="266.0" text="Welcome!" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -24,7 +24,7 @@
             <TableColumn fx:id="cusbalance" editable="false" prefWidth="103.0" resizable="false" sortable="false" style="-fx-alignment: center;" text="Balance" />
          </columns>
       </TableView>
-      <Pane layoutX="876.0" layoutY="169.0" prefHeight="290.0" prefWidth="330.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <Pane layoutX="876.0" layoutY="169.0" prefHeight="194.0" prefWidth="330.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <Label layoutX="25.0" layoutY="32.0" prefHeight="35.0" prefWidth="123.0" text="Admin Name : " textFill="#4c4177">
                <font>
@@ -46,41 +46,51 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <Button fx:id="resetpassword" layoutX="94.0" layoutY="145.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" text="PASSWORD RESET" textFill="#4c4177">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
-      <Label layoutX="968.0" layoutY="85.0" prefHeight="62.0" prefWidth="202.0" text="Admin Information" textFill="WHITE">
+      <Label layoutX="968.0" layoutY="85.0" prefHeight="62.0" prefWidth="202.0" text="Logged As" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Pane layoutX="876.0" layoutY="488.0" prefHeight="275.0" prefWidth="330.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <Pane layoutX="876.0" layoutY="474.0" prefHeight="289.0" prefWidth="330.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <Button layoutX="10.0" layoutY="28.0" mnemonicParsing="false" onAction="#AddCustomerData" prefHeight="55.0" prefWidth="148.0" text="ADD CUSTOMER" textFill="#4c4177">
+            <Button layoutX="10.0" layoutY="28.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="148.0" text="ADD CUSTOMER" textFill="#4c4177">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="172.0" layoutY="28.0" mnemonicParsing="false" onAction="#EditCustomerData" prefHeight="55.0" prefWidth="148.0" text="EDIT CUSTOMER">
+            <Button layoutX="172.0" layoutY="28.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="148.0" text="EDIT CUSTOMER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="113.0" mnemonicParsing="false" onAction="#DeleteCustomerData" prefHeight="55.0" prefWidth="148.0" text="DELETE CUSTOMER" textFill="#4c4177">
+            <Button layoutX="10.0" layoutY="113.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="148.0" text="DELETE CUSTOMER" textFill="#4c4177">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="172.0" layoutY="113.0" mnemonicParsing="false" onAction="#ResetPassword" prefHeight="55.0" prefWidth="148.0" text="PASSWORD RESET" textFill="#4c4177">
+            <Button fx:id="operation" layoutX="167.0" layoutY="113.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="148.0" text="OPERATIONS" textFill="#4c4177">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="loadcusinfo" layoutX="82.0" layoutY="195.0" mnemonicParsing="false" onAction="#LoadCustomerData" prefHeight="55.0" prefWidth="180.0" text="LOAD INFFORMATION" textFill="#4c4177">
+            <Button fx:id="loadcusinfo1" layoutX="77.0" layoutY="210.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="180.0" text="LOAD INFFORMATION" textFill="#4c4177">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
          </children>
       </Pane>
+      <Button fx:id="loadcusinfo11" layoutX="31.0" layoutY="780.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="104.0" text="LOGOUT" textFill="#4c4177">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
