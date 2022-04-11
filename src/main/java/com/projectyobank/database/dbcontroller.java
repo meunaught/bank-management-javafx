@@ -12,11 +12,13 @@ public class dbcontroller {
     //models
     private Banker banker;
     private Customer customer;
+//    private Account account;
 
     public Banker getBanker() {
         return banker;
     }
-    public Customer getCustomer(){return  customer;}
+    public Customer getCustomer(){return customer;}
+//    public Account getAccount() {return account;}
 
 
     public static Connection Connector()
@@ -96,42 +98,6 @@ public class dbcontroller {
         }
     }
 
-    public void Setup_Account(ResultSet resultSet) throws SQLException {
-        Account account = customer.getAccount();
-        if(resultSet.getString("AccountType").equals("Current"))
-        {
-            System.out.println("Yesssssssssssss");
-            account = new CurrentAccount(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
-                    resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
-                    resultSet.getDouble("WithdrawAmount"));
-            System.out.println(dbcontroller.getInstance().getCustomer().getAccount().getBalance());
-
-        }
-        else if(resultSet.getString("AccountType").equals("Savings"))
-        {
-            account = new SavingsAccount(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
-                    resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
-                    resultSet.getDouble("WithdrawAmount"));
-        }
-        else if(resultSet.getString("AccountType").equals("Islamic"))
-        {
-            account = new IslamicAccount(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
-                    resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
-                    resultSet.getDouble("WithdrawAmount"));
-        }
-        else if(resultSet.getString("AccountType").equals("FixedDeposit"))
-        {
-            account = new FixedDeposit(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
-                    resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
-                    resultSet.getDouble("WithdrawAmount"));
-        }
-        else if(resultSet.getString("AccountType").equals("CreditCard"))
-        {
-            account = new CreditCard(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
-                    resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
-                    resultSet.getDouble("WithdrawAmount"));
-        }
-    }
 
     public boolean Verify_Account(long account_number)
     {
@@ -180,11 +146,7 @@ public class dbcontroller {
             }
             catch (SQLException e) {
                 e.printStackTrace();
-            }
-            catch (NullPointerException e) {
-                System.out.println(e);
-            }
-            catch(Exception e) {
+            } catch (Exception e) {
                 System.out.println(e);
             }
         }

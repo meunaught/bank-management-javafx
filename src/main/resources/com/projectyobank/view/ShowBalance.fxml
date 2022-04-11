@@ -2,13 +2,12 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="572.0" prefWidth="735.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.ShowBalancePageController">
+<AnchorPane id="AnchorPane" prefHeight="572.0" prefWidth="735.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.ShowBalancePageController">
     <children>
         <Pane layoutX="23.0" layoutY="105.0" prefHeight="386.0" prefWidth="607.0" style="-fx-background-color: white; -fx-background-radius: 10;">
             <children>
@@ -22,18 +21,22 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <PasswordField fx:id="accountNumberField" layoutX="271.0" layoutY="129.0" prefHeight="40.0" prefWidth="298.0" promptText="Enter Your Account Number" />
-            <Label alignment="CENTER" layoutX="20.0" layoutY="129.0" prefHeight="40.0" prefWidth="226.0" text="Account Number :" textFill="#4c4177">
+            <Label alignment="CENTER" layoutX="20.0" layoutY="129.0" prefHeight="40.0" prefWidth="226.0" text="Account Number" textFill="#4c4177">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="20.0" layoutY="209.0" prefHeight="40.0" prefWidth="226.0" text="Balance :" textFill="#4c4177">
+            <Label alignment="CENTER" layoutX="20.0" layoutY="209.0" prefHeight="40.0" prefWidth="226.0" text="Balance (BDT)" textFill="#4c4177">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="balanceField" layoutX="271.0" layoutY="209.0" prefHeight="40.0" prefWidth="298.0" promptText="Tk :">
+            <TextField fx:id="balanceField" editable="false" layoutX="271.0" layoutY="209.0" prefHeight="40.0" prefWidth="298.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="accountNumberField" layoutX="271.0" layoutY="129.0" prefHeight="40.0" prefWidth="298.0" promptText="Enter Account Number">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

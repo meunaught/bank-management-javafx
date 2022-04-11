@@ -15,7 +15,7 @@ public class ShowBalancePageController extends Controller{
     @FXML
     private Button balanceButton;
     @FXML
-    private PasswordField accountNumberField;
+    private TextField accountNumberField;
     @FXML
     private TextField balanceField;
     @FXML
