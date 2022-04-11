@@ -1,7 +1,6 @@
 package com.projectyobank.database;
 
-import com.projectyobank.models.Banker;
-import com.projectyobank.models.Customer;
+import com.projectyobank.models.*;
 
 import java.sql.*;
 
@@ -13,6 +12,11 @@ public class dbcontroller {
     //models
     private Banker banker;
     private Customer customer;
+
+    public Banker getBanker() {
+        return banker;
+    }
+    public Customer getCustomer(){return  customer;}
 
 
     public static Connection Connector()
@@ -92,7 +96,141 @@ public class dbcontroller {
         }
     }
 
-    public Banker getBanker() {
-        return banker;
+    public void Setup_Account(ResultSet resultSet) throws SQLException {
+        Account account = customer.getAccount();
+        if(resultSet.getString("AccountType").equals("Current"))
+        {
+            System.out.println("Yesssssssssssss");
+            account = new CurrentAccount(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
+                    resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
+                    resultSet.getDouble("WithdrawAmount"));
+            System.out.println(dbcontroller.getInstance().getCustomer().getAccount().getBalance());
+
+        }
+        else if(resultSet.getString("AccountType").equals("Savings"))
+        {
+            account = new SavingsAccount(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
+                    resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
+                    resultSet.getDouble("WithdrawAmount"));
+        }
+        else if(resultSet.getString("AccountType").equals("Islamic"))
+        {
+            account = new IslamicAccount(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
+                    resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
+                    resultSet.getDouble("WithdrawAmount"));
+        }
+        else if(resultSet.getString("AccountType").equals("FixedDeposit"))
+        {
+            account = new FixedDeposit(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
+                    resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
+                    resultSet.getDouble("WithdrawAmount"));
+        }
+        else if(resultSet.getString("AccountType").equals("CreditCard"))
+        {
+            account = new CreditCard(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
+                    resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
+                    resultSet.getDouble("WithdrawAmount"));
+        }
+    }
+
+    public boolean Verify_Account(long account_number)
+    {
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+//            System.exit(1);
+        }
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String Query = "select * from Login_Info_For_Users where AccountNumber = ?";
+
+        try {
+            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement.setLong(1,account_number);
+            resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next())
+            {
+                customer = new Customer(resultSet.getString("Username"),resultSet.getString("email"),
+                        resultSet.getString("phone"),resultSet.getString("Address"));
+                System.out.println("Customer Created");
+                //Setup_Account(resultSet);
+                customer.setAccount(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
+                        resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
+                        resultSet.getDouble("WithdrawAmount"));
+
+                return true;
+            }
+            else
+            {
+                System.out.println("didn't find account number");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                resultSet.close();
+                conection.close();
+                System.out.println("Yes");
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+            catch (NullPointerException e) {
+                System.out.println(e);
+            }
+            catch(Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public void Update_Account(Account account)
+    {
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+//            System.exit(1);
+        }
+
+        PreparedStatement preparedStatement = null;
+        String Query = "UPDATE Login_Info_For_Users SET Balance = ? ,MainBalance = ? ,WithdrawAmount = ?,Time = ? WHERE" +
+                " AccountNumber = ?";
+        try{
+            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement.setDouble(1,account.getBalance());
+            preparedStatement.setDouble(2,account.getMain_balance());
+            preparedStatement.setDouble(3,account.getWithdraw_amount());
+            preparedStatement.setLong(4,account.getTime().getTime());
+            preparedStatement.setLong(5,account.getNumber());
+
+            int a = preparedStatement.executeUpdate();
+            System.out.println("Update database " + a);
+
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                conection.close();
+                System.out.println("Yes");
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+            catch (NullPointerException e) {
+                System.out.println(e);
+            }
+            catch(Exception e) {
+                System.out.println(e);
+            }
+        }
     }
 }

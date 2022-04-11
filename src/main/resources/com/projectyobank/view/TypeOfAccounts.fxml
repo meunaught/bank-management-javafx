@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="720.0" style="-fx-background-color: DEEPSKYBLUE;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.TypeOfAccountsController">
+<AnchorPane prefHeight="540.0" prefWidth="720.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.TypeOfAccountsController">
    <children>
       <Button fx:id="CurrentAccount" layoutX="115.0" layoutY="95.0" mnemonicParsing="false" onAction="#Get_Current_Account" prefHeight="72.0" prefWidth="234.0" text="CurrentAccount">
          <font>
@@ -31,7 +31,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="GoBack" layoutY="467.0" mnemonicParsing="false" onAction="#PreviousPage" prefHeight="72.0" prefWidth="151.0" text="Go Back">
+      <Button fx:id="GoBack" layoutX="25.0" layoutY="443.0" mnemonicParsing="false" onAction="#PreviousPage" prefHeight="72.0" prefWidth="151.0" text="Go Back">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
