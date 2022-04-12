@@ -1,28 +1,30 @@
 package com.projectyobank.controllers;
 
+import com.jfoenix.animation.alert.JFXAlertAnimation;
+import com.jfoenix.controls.*;
 import com.projectyobank.database.dbcontroller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
 
 import java.io.IOException;
 
 public class LoginController extends Controller{
     @FXML
-    private Button LoginButton;
+    private JFXButton LoginButton;
     @FXML
-    private TextField UsernameField;
+    private JFXTextField usernameField;
     @FXML
-    private PasswordField passwordField;
-    @FXML
-    private Label ErrorShowLabel;
+    private JFXPasswordField passwordField;
 
-    public void Login(ActionEvent e) {
+
+    public void handleLoginButtonClick(ActionEvent e) {
 //        System.out.println("login method e dhuksee");
-        if(dbcontroller.getInstance().Verify_User_Login(UsernameField.getText(), passwordField.getText())) {
+        if(dbcontroller.getInstance().Verify_User_Login(usernameField.getText(), passwordField.getText())) {
             try {
 //                System.out.println("switchToScene er agei asi");
                 switchToScene("view/AdminPage.fxml", e);
@@ -32,8 +34,8 @@ public class LoginController extends Controller{
             }
         }
         else {
-            ErrorShowLabel.setText("Invalid Username or Password");
-
+            usernameField.getStyleClass().add("wrong-credentials");
+            passwordField.getStyleClass().add("wrong-credentials");
         }
     }
 

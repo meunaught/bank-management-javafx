@@ -16,8 +16,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root  = FXMLLoader.load(Main.class.getResource("view/LOGINPAGE.fxml"));
-        Scene scene = new Scene(root, Color.DEEPSKYBLUE);
+        Parent root  = FXMLLoader.load(Main.class.getResource("view/login.fxml"));
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Yo Online Bank");
         //Image icon = new Image("file:///C:/Users/User/IdeaProjects/HelloFX/Icon.png");

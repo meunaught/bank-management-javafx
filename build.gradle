@@ -38,6 +38,8 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
     implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
+    implementation 'com.jfoenix:jfoenix:9.0.1'
+    implementation 'de.jensd:fontawesomefx-fontawesome:4.7.0-9.1.2'
 
 }
 
