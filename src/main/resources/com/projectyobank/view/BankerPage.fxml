@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1154.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox maxWidth="-Infinity" prefWidth="200.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <ImageView fitHeight="56.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/user.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="76.0" prefWidth="99.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Banker Name" wrappingWidth="120.6826171875">
+                           <VBox.margin>
+                              <Insets left="20.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Banker Des">
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <padding>
+                        <Insets left="-10.0" />
+                     </padding>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox />
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="190.0">
+                     <children>
+                        <Label text="6969">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Customers" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="171.0">
+                     <children>
+                        <Label text="6969">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Transactions" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="177.0">
+                     <children>
+                        <Label text="6969">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Total Debit" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="177.0">
+                     <children>
+                        <Label text="6969">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Total Credit" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" />
+               </children>
+            </HBox>
+            <HBox layoutX="237.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <HBox />
+                  <Label text="current Time">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox prefHeight="646.0" prefWidth="214.0" BorderPane.alignment="CENTER">
+         <children>
+            <Separator prefWidth="200.0" />
+            <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Add Account">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="5.0" top="40.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Limits Manager">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="5.0" top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Make Transaction">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="5.0" top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Statement">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
+               </graphic>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets left="5.0" top="15.0" />
+               </VBox.margin>
+            </JFXButton>
+            <Separator prefHeight="96.0" prefWidth="214.0" />
+            <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="66.0" prefWidth="214.0">
+                     <children>
+                        <JFXButton prefHeight="50.0" prefWidth="200.0" text="Settings">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="GEAR" size="1.5em" />
+                           </graphic>
+                           <padding>
+                              <Insets right="80.0" />
+                           </padding>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <JFXButton prefHeight="50.0" prefWidth="200.0" text="Logout">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="USER" size="1.5em" />
+                     </graphic>
+                     <padding>
+                        <Insets right="90.0" />
+                     </padding>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="27.0" prefWidth="940.0">
+               <children>
+                  <FontAwesomeIconView glyphName="SEARCH" size="1.3em">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <JFXTextField prefHeight="25.0" prefWidth="306.0" />
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <HBox prefHeight="27.0" prefWidth="444.0">
+                     <children>
+                        <FontAwesomeIconView glyphName="SEARCH" size="1.3em" />
+                        <JFXComboBox prefHeight="25.0" prefWidth="355.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="27.0" prefWidth="393.0">
+                     <children>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <FontAwesomeIconView glyphName="ARROW_UP" size="1.3em" />
+                        <JFXComboBox prefHeight="25.0" prefWidth="280.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <JFXTreeTableView prefHeight="651.0" prefWidth="940.0" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

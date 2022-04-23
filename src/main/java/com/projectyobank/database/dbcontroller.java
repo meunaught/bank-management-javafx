@@ -9,22 +9,18 @@ public class dbcontroller {
     public static dbcontroller getInstance() {
         return instance;
     }
-    //models
     private Banker banker;
     private Customer customer;
-//    private Account account;
 
     public Banker getBanker() {
         return banker;
     }
     public Customer getCustomer(){return customer;}
-//    public Account getAccount() {return account;}
 
 
     public static Connection Connector()
     {
         try {
-//            System.out.println("fffffffffffffffffffffffffff");
             Class.forName("org.sqlite.JDBC");
             Connection conn = DriverManager.getConnection("jdbc:sqlite:my_Database.db");
             return conn;
