@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="893.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="893.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane layoutX="67.0" layoutY="65.0" prefHeight="521.0" prefWidth="759.0" style="-fx-background-color: white;">
          <children>
-            <Label layoutX="53.0" layoutY="114.0" prefHeight="51.0" prefWidth="118.0" text="Password" textFill="#4c4177">
+            <Label layoutX="53.0" layoutY="114.0" prefHeight="51.0" prefWidth="133.0" text="Account Type" textFill="#4c4177">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="215.0" layoutY="114.0" prefHeight="51.0" prefWidth="350.0" promptText="Password" style="-fx-border-color: #4c4177; -fx-border-width: 2; -fx-background-radius: 20; -fx-border-radius: 20;">
+            <TextField fx:id="accountType" layoutX="215.0" layoutY="114.0" prefHeight="51.0" prefWidth="350.0" promptText="Account Type" style="-fx-border-color: #4c4177; -fx-border-width: 2; -fx-background-radius: 20; -fx-border-radius: 20;">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></TextField>
@@ -30,11 +30,11 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="215.0" layoutY="52.0" prefHeight="51.0" prefWidth="350.0" promptText="Username" style="-fx-border-color: #4c4177; -fx-border-width: 2; -fx-background-radius: 20; -fx-border-radius: 20;">
+            <TextField fx:id="username" layoutX="215.0" layoutY="52.0" prefHeight="51.0" prefWidth="350.0" promptText="Username" style="-fx-border-color: #4c4177; -fx-border-width: 2; -fx-background-radius: 20; -fx-border-radius: 20;">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font></TextField>
-            <TextField layoutX="215.0" layoutY="184.0" prefHeight="83.0" prefWidth="350.0" promptText="Address" style="-fx-border-color: #4c4177; -fx-border-width: 2; -fx-background-radius: 20; -fx-border-radius: 20;">
+            <TextField fx:id="address" layoutX="215.0" layoutY="184.0" prefHeight="83.0" prefWidth="350.0" promptText="Address" style="-fx-border-color: #4c4177; -fx-border-width: 2; -fx-background-radius: 20; -fx-border-radius: 20;">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font></TextField>
@@ -43,7 +43,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="215.0" layoutY="288.0" prefHeight="51.0" prefWidth="350.0" promptText="Phone" style="-fx-border-color: #4c4177; -fx-border-width: 2; -fx-background-radius: 20; -fx-border-radius: 20;">
+            <TextField fx:id="phone" layoutX="215.0" layoutY="288.0" prefHeight="51.0" prefWidth="350.0" promptText="Phone" style="-fx-border-color: #4c4177; -fx-border-width: 2; -fx-background-radius: 20; -fx-border-radius: 20;">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font></TextField>
@@ -52,11 +52,11 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="215.0" layoutY="355.0" prefHeight="51.0" prefWidth="350.0" promptText="Email" style="-fx-border-color: #4c4177; -fx-border-width: 2; -fx-background-radius: 20; -fx-border-radius: 20;">
+            <TextField fx:id="email" layoutX="215.0" layoutY="355.0" prefHeight="51.0" prefWidth="350.0" promptText="Email" style="-fx-border-color: #4c4177; -fx-border-width: 2; -fx-background-radius: 20; -fx-border-radius: 20;">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font></TextField>
-            <Button layoutX="606.0" layoutY="437.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="111.0" text="ADD" textFill="#4c4177">
+            <Button fx:id="addButton" layoutX="606.0" layoutY="437.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="59.0" prefWidth="111.0" text="ADD" textFill="#4c4177">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -67,7 +67,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="215.0" layoutY="427.0" prefHeight="51.0" prefWidth="350.0" promptText="Balance" style="-fx-border-color: #4c4177; -fx-border-width: 2; -fx-background-radius: 20; -fx-border-radius: 20;">
+            <TextField fx:id="balance" layoutX="215.0" layoutY="427.0" prefHeight="51.0" prefWidth="350.0" promptText="Balance" style="-fx-border-color: #4c4177; -fx-border-width: 2; -fx-background-radius: 20; -fx-border-radius: 20;">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>

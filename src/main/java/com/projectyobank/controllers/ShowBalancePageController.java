@@ -28,16 +28,19 @@ public class ShowBalancePageController extends Controller{
 
     public void Get_Balance(ActionEvent e)
     {
-        if(dbcontroller.getInstance().Verify_Account(Integer.parseInt(accountNumberField.getText())))
-        {
-            ErrorShowLabel.setText("");
-            Account account = dbcontroller.getInstance().getCustomer().getAccount();
-            account.createBalance();
-            balanceField.setText(String.valueOf(account.getBalance()));
+        try {
+            if (dbcontroller.getInstance().Verify_Account(Integer.parseInt(accountNumberField.getText()))) {
+                ErrorShowLabel.setText("");
+                Account account = dbcontroller.getInstance().getCustomer().getAccount();
+                account.createBalance(account);
+                balanceField.setText(String.valueOf(account.getBalance()));
+            } else {
+                ErrorShowLabel.setText("Account number is not valid!!!");
+            }
         }
-        else
+        catch (Exception exception)
         {
-            ErrorShowLabel.setText("Account number is not valid!!!");
+            System.out.println(e);
         }
     }
 }

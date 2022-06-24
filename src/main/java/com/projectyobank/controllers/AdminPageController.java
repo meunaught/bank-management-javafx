@@ -28,11 +28,16 @@ public class AdminPageController extends Controller implements Initializable {
 
     public void logout(ActionEvent  e)
     {
-        giveFilename("view/LOGINPAGE.fxml",e);
+        giveFilename("view/login.fxml",e);
     }
 
     public void operations(ActionEvent e)
     {
         giveFilename("view/options.fxml",e);
+    }
+
+    public void addCustomer(ActionEvent e)
+    {
+        giveFilename("view/addcustomer.fxml",e);
     }
 }

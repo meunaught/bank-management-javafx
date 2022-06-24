@@ -6,14 +6,13 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../stylesheet/dark-theme.css" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../stylesheet/dark-theme.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.LoginController">
    <children>
       <FontAwesomeIconView glyphName="LOCK" layoutX="288.0" layoutY="107.0" size="45" />
       <JFXTextField fx:id="usernameField" layoutX="212.0" layoutY="140.0" promptText="Username" />
       <FontAwesomeIconView glyphName="USER" layoutX="181.0" layoutY="169.0" size="20" />
       <JFXPasswordField fx:id="passwordField" layoutX="210.0" layoutY="225.0" promptText="Password" />
       <FontAwesomeIconView glyphName="KEY" layoutX="178.0" layoutY="252.0" size="20" text="" />
-      <JFXButton fx:id="LoginButton" layoutX="266.0" layoutY="302.0" onAction="#handleLoginButtonClick" text="Login" />
+      <JFXButton fx:id="LoginButton" buttonType="RAISED" layoutX="266.0" layoutY="302.0" onAction="#handleLoginButtonClick" text="Login" />
    </children>
 </AnchorPane>
