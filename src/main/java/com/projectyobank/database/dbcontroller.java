@@ -3,6 +3,11 @@ package com.projectyobank.database;
 import com.projectyobank.models.*;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+import java.util.*;
+import java.util.Date;
 
 public class dbcontroller {
     private static final dbcontroller instance = new dbcontroller();
@@ -189,6 +194,7 @@ public class dbcontroller {
                 account.getInterest().setRate(resultSet.getDouble("InterestRate"));
                 account.getInterest().setRate_hour(resultSet.getDouble("InterestRateHour"));
                 account.setMax_withdraw_amount(resultSet.getDouble("MaxWithdraw"));
+                account.setMinimum_amount_for_account_creation(resultSet.getDouble("MinimumAmount"));
             }
         }
         catch (SQLException e)
@@ -248,6 +254,68 @@ public class dbcontroller {
         }
         catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                conection.close();
+                //System.out.println("Yes in update database");
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+            catch (NullPointerException e) {
+                System.out.println(e);
+            }
+            catch(Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public void addCustomer(String username,String accountType,long accountNumber,double mainBalance,double balance,String email,long phone,String address)
+    {
+        try {
+            conection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+//            System.exit(1);
+        }
+        PreparedStatement preparedStatement = null;
+        String Query = "INSERT INTO Login_Info_For_Users(Username,AccountType,AccountNumber,MainBalance,Balance,Email," +
+                "Date_of_Account_Creation,WithdrawAmount,Time,phone,Address,Status) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+        try
+        {
+
+            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement.setString(1,username);
+            preparedStatement.setString(2,accountType);
+            preparedStatement.setLong(3,accountNumber);
+            preparedStatement.setDouble(4,mainBalance);
+            preparedStatement.setDouble(5,balance);
+            preparedStatement.setString(6,email);
+
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = new Date();
+            preparedStatement.setString(7,formatter.format(date));
+            preparedStatement.setDouble(8,0);
+            preparedStatement.setLong(9,System.currentTimeMillis());
+            preparedStatement.setLong(10,phone);
+            preparedStatement.setString(11,address);
+            preparedStatement.setString(12,"Unmatured");
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException exception)
+        {
+            exception.printStackTrace();
+        }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
         }
         finally {
             try {

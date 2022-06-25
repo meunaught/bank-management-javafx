@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="792.0" maxWidth="1170.0" prefHeight="792.0" prefWidth="1170.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.AdminPageController">
+<AnchorPane id="AnchorPane" maxHeight="792.0" maxWidth="1170.0" prefHeight="792.0" prefWidth="1170.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.AdminPageController">
    <children>
       <Label fx:id="welcome" alignment="TOP_CENTER" layoutX="-40.0" layoutY="20.0" prefHeight="48.0" prefWidth="266.0" text="Welcome!" textFill="WHITE">
          <font>
@@ -60,7 +60,7 @@
       </Label>
       <Pane layoutX="813.0" layoutY="400.0" prefHeight="289.0" prefWidth="330.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <Button layoutX="10.0" layoutY="28.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="148.0" text="ADD CUSTOMER" textFill="#4c4177">
+            <Button fx:id="addButton" layoutX="10.0" layoutY="28.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="55.0" prefWidth="148.0" text="ADD CUSTOMER" textFill="#4c4177">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

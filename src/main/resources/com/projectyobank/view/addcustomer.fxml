@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="893.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="893.0" style="-fx-background-color: #4c4177;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.AddCustomerController">
    <children>
-      <Pane layoutX="67.0" layoutY="65.0" prefHeight="521.0" prefWidth="759.0" style="-fx-background-color: white;">
+      <Pane layoutX="60.0" layoutY="64.0" prefHeight="521.0" prefWidth="759.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="53.0" layoutY="114.0" prefHeight="51.0" prefWidth="133.0" text="Account Type" textFill="#4c4177">
                <font>
@@ -74,5 +74,10 @@
             </TextField>
          </children>
       </Pane>
+      <Button fx:id="backButton" layoutX="14.0" layoutY="595.0" mnemonicParsing="false" onAction="#goBack" prefHeight="48.0" prefWidth="104.0" text="GO BACK" textFill="#4c4177">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -17,6 +17,7 @@ public class Account {
     private double max_withdraw_amount;
     private Interest interest;
     private String Status;
+    private double minimum_amount_for_account_creation;
 
     public Account()
     {
@@ -62,6 +63,9 @@ public class Account {
 
     public void setMax_withdraw_amount(double amount){this.max_withdraw_amount = amount;}
     public double getMax_withdraw_amount(){return this.max_withdraw_amount;}
+
+    public void setMinimum_amount_for_account_creation(double amount) {this.minimum_amount_for_account_creation = amount;}
+    public double getMinimum_amount_for_account_creation(){return this.minimum_amount_for_account_creation;}
 
     public void setInterest(Interest interest){this.interest = interest;}
     public Interest getInterest(){return this.interest;}

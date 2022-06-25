@@ -32,4 +32,17 @@ public class AlertGenerator {
             return false;
         }
     }
+
+    public void showInformationAlert(String title,String ContextText)
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText("");
+        alert.setContentText(ContextText);
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        if (alert.showAndWait().get() == ButtonType.OK) {
+
+        }
+
+    }
 }
