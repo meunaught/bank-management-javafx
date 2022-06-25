@@ -1,6 +1,7 @@
 package com.projectyobank.database;
 
 import com.projectyobank.models.*;
+import javafx.event.ActionEvent;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -154,11 +155,11 @@ public class dbcontroller {
             if(resultSet.next())
             {
                 customer = new Customer(resultSet.getString("Username"),resultSet.getString("email"),
-                        resultSet.getString("phone"),resultSet.getString("Address"));
+                        resultSet.getLong("phone"),resultSet.getString("Address"));
 
                 customer.setAccount(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
                         resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
-                        resultSet.getDouble("WithdrawAmount"),resultSet.getString("Status"));
+                        resultSet.getDouble("WithdrawAmount"));
 
                 return true;
             }
@@ -187,7 +188,7 @@ public class dbcontroller {
         }
     }
 
-    public void SetProperties()
+    public void SetProperties(Account account)
     {
         try {
             conection.close();
@@ -204,12 +205,11 @@ public class dbcontroller {
         String Query = "select * from Account_Properties where Type = ?";
         try{
             preparedStatement = conection.prepareStatement(Query);
-            preparedStatement.setString(1,dbcontroller.getInstance().getCustomer().getAccount().getType());
+            preparedStatement.setString(1,account.getType());
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next())
             {
                 System.out.println("Set properties");
-                Account account = dbcontroller.getInstance().getCustomer().getAccount();
                 account.getInterest().setRate(resultSet.getDouble("InterestRate"));
                 account.getInterest().setRate_hour(resultSet.getDouble("InterestRateHour"));
                 account.setMax_withdraw_amount(resultSet.getDouble("MaxWithdraw"));
@@ -354,8 +354,158 @@ public class dbcontroller {
         }
     }
 
-    public void addTransaction()
+    public void deleteAccount(long accountNumber)
     {
+        try {
+            conection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+//            System.exit(1);
+        }
+        PreparedStatement preparedStatement = null;
+        String Query = "DELETE FROM Login_info_For_Users WHERE AccountNumber = ?";
+        try{
+            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement.setLong(1,accountNumber);
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException exception)
+        {
+            System.out.println(exception.getMessage());
+        }
+        catch(Exception exception)
+        {
+            System.out.println(exception.getMessage());
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                conection.close();
+                //System.out.println("Yes in update database");
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+            catch (NullPointerException e) {
+                System.out.println(e.getMessage());
+            }
+            catch(Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public void addEmployee(String username,String password,String designation)
+    {
+        try {
+            conection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+//            System.exit(1);
+        }
+        PreparedStatement preparedStatement = null;
+        String Query = "INSERT INTO admin_login(Username,PassWord,Designation) VALUES(?,?,?)";
+        try
+        {
+
+            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement.setString(1,username);
+            preparedStatement.setString(2,password);
+            preparedStatement.setString(3,designation);
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException exception)
+        {
+            exception.printStackTrace();
+        }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                conection.close();
+                //System.out.println("Yes in update database");
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+            catch (NullPointerException e) {
+                System.out.println(e);
+            }
+            catch(Exception e) {
+                System.out.println(e);
+            }
+        }
 
     }
+
+    public void addTransaction(double previousBalance,double amount,String transactionType,Customer customer)
+    {
+        try {
+            conection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+//            System.exit(1);
+        }
+        PreparedStatement preparedStatement = null;
+        String Query = "INSERT INTO Transaction(Username,AccountNumber,AccountType,TransactionType," +
+                "TransactionAmount,CurrentBalance,PreviousBalance,Date) VALUES(?,?,?,?,?,?,?,?)";
+        try
+        {
+
+            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement.setString(1,customer.getUsername());
+            preparedStatement.setLong(2,customer.getAccount().getNumber());
+            preparedStatement.setString(3,customer.getAccount().getType());
+            preparedStatement.setString(4,transactionType);
+            preparedStatement.setDouble(5,amount);
+            preparedStatement.setDouble(6,customer.getAccount().getBalance());
+            preparedStatement.setDouble(7,previousBalance);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = new Date();
+            preparedStatement.setString(8,formatter.format(date));
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException exception)
+        {
+            exception.printStackTrace();
+        }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                conection.close();
+                //System.out.println("Yes in update database");
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+            catch (NullPointerException e) {
+                System.out.println(e);
+            }
+            catch(Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
 }
+
+

@@ -24,17 +24,17 @@ public class Account {
 
     }
 
-    public Account(String type,long number,long time,double balance,double main_balance,double withdraw_amount,String Status)
+    public Account(String type,long number,long time,double balance,double main_balance,double withdraw_amount)
     {
         this.type = type;
         this.number = number;
         this.time = new Time(time);
         this.balance = balance;
         this.main_balance = main_balance;
-        this.current_withdraw_amount =withdraw_amount;
+        this.current_withdraw_amount = withdraw_amount;
         this.transaction = new Transaction();
         this.interest = new Interest();
-        this.Status = Status;
+        this.Status = "Unmatured";
     }
 
     public void setType(String type){this.type = type;}
@@ -78,12 +78,10 @@ public class Account {
         Time time;
         Date date;
         double hours;
-        //Account account;
-        //account = dbcontroller.getInstance().getCustomer().getAccount();
         time = account.getTime();
         date = new Date();
         hours = (date.getTime() - time.getTime())/(1000*60*60*1.0);
-        dbcontroller.getInstance().SetProperties();
+        dbcontroller.getInstance().SetProperties(account);
         hours /=account.getInterest().getRate_hour();
         System.out.println(hours);
         if(hours>=1)

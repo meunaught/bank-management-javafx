@@ -3,6 +3,7 @@ package com.projectyobank.controllers;
 import com.jfoenix.controls.JFXTextField;
 import com.projectyobank.database.dbcontroller;
 import com.projectyobank.models.Account;
+import com.projectyobank.models.Customer;
 import com.projectyobank.utils.AlertGenerator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,9 +55,20 @@ public class AddCustomerController extends Controller{
                         break;
                     }
                 }
-                dbcontroller.getInstance().addCustomer(username,accountType,accountNumber,balance,balance,email,phone,address);
+                Customer customer = new Customer(username,email,phone,address);
+                customer.setAccount(accountType,accountNumber,System.currentTimeMillis(),balance,balance,0);
+                dbcontroller.getInstance().SetProperties(customer.getAccount());
                 AlertGenerator alertGenerator = new AlertGenerator();
-                alertGenerator.showInformationAlert("New Account Number","Your Account Number is " + String.valueOf(accountNumber));
+                if(customer.getAccount().getMinimum_amount_for_account_creation()>balance)
+                {
+                    alertGenerator.showErrorAlert("New Customer","Minimum amount for " + accountType +" is " +
+                            customer.getAccount().getMinimum_amount_for_account_creation());
+                }
+                else
+                {
+                    dbcontroller.getInstance().addCustomer(username,accountType,accountNumber,balance,balance,email,phone,address);
+                    alertGenerator.showInformationAlert("New Account Number","Your Account Number is " + String.valueOf(accountNumber));
+                }
             }
         }
         catch(NumberFormatException exception)
