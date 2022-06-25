@@ -34,12 +34,14 @@ public class Transaction {
         }
         if(indicator)
         {
+            double previousBalance = account.getBalance();
             account.setBalance(account.getBalance()-amount);
             if((account.getBalance()-account.getMain_balance())<amount)
             {
                 account.setMain_balance(account.getMain_balance() - (amount -(account.getBalance()- account.getMain_balance())));
             }
             dbcontroller.getInstance().Update_Account(account);
+
         }
         return indicator;
     }

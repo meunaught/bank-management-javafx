@@ -43,6 +43,10 @@ public class AlertGenerator {
         if (alert.showAndWait().get() == ButtonType.OK) {
 
         }
+    }
 
+    public void accessDenied()
+    {
+        showErrorAlert("Access Denied","You are not permitted to access this functionality");
     }
 }

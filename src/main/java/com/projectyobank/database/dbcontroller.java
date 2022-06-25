@@ -83,7 +83,26 @@ public class dbcontroller {
             System.out.println("verify te dhukse");
 
             if(resultSet.next()) {
-                banker = new Banker(resultSet.getString("Username"), resultSet.getString("PassWord"), resultSet.getString("Designation"));
+                String temp = resultSet.getString("Designation");
+                if(temp.compareToIgnoreCase("Manager") == 0)
+                {
+                    banker = new Manager(resultSet.getString("Username"),
+                            resultSet.getString("PassWord"),
+                            resultSet.getString("Designation"));
+                }
+                else if(temp.compareToIgnoreCase("Senior_Officer") ==0)
+                {
+                    banker = new Senior_Officer(resultSet.getString("Username"),
+                            resultSet.getString("PassWord"),
+                            resultSet.getString("Designation"));
+
+                }
+                else if(temp.compareToIgnoreCase("Junior_Officer")==0)
+                {
+                    banker = new Junior_Officer(resultSet.getString("Username"),
+                            resultSet.getString("PassWord"),
+                            resultSet.getString("Designation"));
+                }
                 return true;
             }
             return false;
@@ -333,5 +352,10 @@ public class dbcontroller {
                 System.out.println(e);
             }
         }
+    }
+
+    public void addTransaction()
+    {
+
     }
 }

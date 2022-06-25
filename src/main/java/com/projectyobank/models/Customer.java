@@ -4,7 +4,8 @@ import com.projectyobank.database.dbcontroller;
 
 import java.util.ArrayList;
 
-public class Customer extends User{
+public class Customer{
+    private String username;
     private String email;
     private String phone;
     private String address;
@@ -16,9 +17,9 @@ public class Customer extends User{
 
     }
 
-    public Customer(String Username,String email,String phone,String address)
+    public Customer(String username,String email,String phone,String address)
     {
-        this.setUsername(Username);
+        this.username = username;
         this.email = email;
         this.phone = phone;
         this.address = address;
