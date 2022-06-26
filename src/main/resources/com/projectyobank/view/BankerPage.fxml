@@ -14,13 +14,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1154.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1154.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.BankerPageController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox maxWidth="-Infinity" prefWidth="200.0">
+            <HBox maxWidth="-Infinity" prefHeight="100.0" prefWidth="232.0">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
@@ -30,30 +29,21 @@
                         <Image url="@../images/user.png" />
                      </image>
                   </ImageView>
-                  <VBox prefHeight="76.0" prefWidth="99.0">
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="60.0" prefWidth="146.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Banker Name" wrappingWidth="120.6826171875">
-                           <VBox.margin>
-                              <Insets left="20.0" top="5.0" />
-                           </VBox.margin>
+                        <Label fx:id="BankerName" prefHeight="18.0" prefWidth="130.0" text="Banker Name">
                            <font>
                               <Font size="19.0" />
                            </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Banker Des">
-                           <VBox.margin>
-                              <Insets left="20.0" />
-                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="Designation" text="Designation">
                            <font>
                               <Font size="16.0" />
                            </font>
-                        </Text>
+                        </Label>
                      </children>
-                     <padding>
-                        <Insets left="-10.0" />
-                     </padding>
                   </VBox>
-                  <Separator orientation="VERTICAL" prefHeight="200.0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
@@ -125,13 +115,53 @@
       <VBox prefHeight="646.0" prefWidth="214.0" BorderPane.alignment="CENTER">
          <children>
             <Separator prefWidth="200.0" />
-            <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Add Account">
+            <JFXButton fx:id="AddAccountButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Add Account">
                <graphic>
                   <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
                </graphic>
                <VBox.margin>
                   <Insets left="5.0" top="40.0" />
                </VBox.margin>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton fx:id="AccountButton1" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Edit Account">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
+               </graphic>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton fx:id="AccountButton11" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Delete Account">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
+               </graphic>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton fx:id="AccountButton111" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Add Employee">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
+               </graphic>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton fx:id="AccountButton1111" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Edit Employee">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
+               </graphic>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton fx:id="AccountButton11111" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="DeleteEmployee">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
+               </graphic>
                <padding>
                   <Insets right="40.0" />
                </padding>
@@ -147,7 +177,7 @@
                   <Insets right="40.0" />
                </padding>
             </JFXButton>
-            <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Make Transaction">
+            <JFXButton fx:id="TransactionButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#transactionButtonClick" prefHeight="50.0" prefWidth="200.0" text="Make Transaction">
                <graphic>
                   <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
                </graphic>
@@ -169,12 +199,12 @@
                   <Insets left="5.0" top="15.0" />
                </VBox.margin>
             </JFXButton>
-            <Separator prefHeight="96.0" prefWidth="214.0" />
+            <Separator prefHeight="21.0" prefWidth="214.0" />
             <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                <children>
                   <HBox prefHeight="66.0" prefWidth="214.0">
                      <children>
-                        <JFXButton prefHeight="50.0" prefWidth="200.0" text="Settings">
+                        <JFXButton prefHeight="50.0" prefWidth="200.0" text="Edit Password">
                            <graphic>
                               <FontAwesomeIconView glyphName="GEAR" size="1.5em" />
                            </graphic>
@@ -184,7 +214,7 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <JFXButton prefHeight="50.0" prefWidth="200.0" text="Logout">
+                  <JFXButton fx:id="LogoutButton" onAction="#logoutButtonClick" prefHeight="50.0" prefWidth="200.0" text="Logout">
                      <graphic>
                         <FontAwesomeIconView glyphName="USER" size="1.5em" />
                      </graphic>

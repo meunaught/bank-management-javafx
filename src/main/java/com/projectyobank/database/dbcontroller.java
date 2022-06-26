@@ -424,11 +424,11 @@ public class dbcontroller {
         }
         catch(SQLException exception)
         {
-            exception.printStackTrace();
+            System.out.println(exception.getMessage());
         }
         catch(Exception exception)
         {
-            exception.printStackTrace();
+            System.out.println(exception.getMessage());
         }
         finally {
             try {
@@ -437,13 +437,13 @@ public class dbcontroller {
                 //System.out.println("Yes in update database");
             }
             catch (SQLException e) {
-                e.printStackTrace();
+                System.out.printf(e.getMessage());
             }
             catch (NullPointerException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             catch(Exception e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
         }
 
@@ -462,8 +462,10 @@ public class dbcontroller {
 //            System.exit(1);
         }
         PreparedStatement preparedStatement = null;
-        String Query = "INSERT INTO Transaction(Username,AccountNumber,AccountType,TransactionType," +
-                "TransactionAmount,CurrentBalance,PreviousBalance,Date) VALUES(?,?,?,?,?,?,?,?)";
+        //String Query = "INSERT INTO Transaction (Username,AccountNumber,AccountType,TransactionType," +
+          //      "TransactionAmount,CurrentBalance,PreviousBalance,Date) VALUES(?,?,?,?,?,?,?,?)";
+        String Query = "INSERT INTO trans(Username,AccountNumber,AccountType,TransactionType,TransactionAmount,CurrentBalance,PreviousBalance,Date) " +
+                "VALUES(?,?,?,?,?,?,?,?)";
         try
         {
 
@@ -482,11 +484,11 @@ public class dbcontroller {
         }
         catch(SQLException exception)
         {
-            exception.printStackTrace();
+            System.out.println(exception.getMessage());
         }
         catch(Exception exception)
         {
-            exception.printStackTrace();
+            System.out.println(exception.getMessage());
         }
         finally {
             try {
@@ -495,13 +497,13 @@ public class dbcontroller {
                 //System.out.println("Yes in update database");
             }
             catch (SQLException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
             catch (NullPointerException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             catch(Exception e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
         }
     }

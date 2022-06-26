@@ -37,12 +37,12 @@ public class Transaction {
         {
             double previousBalance = account.getBalance();
             account.setBalance(account.getBalance()-amount);
-            if((account.getBalance()-account.getMain_balance())<amount)
+            if(account.getMain_balance()> account.getBalance())
             {
-                account.setMain_balance(account.getMain_balance() - (amount -(account.getBalance()- account.getMain_balance())));
+                account.setMain_balance(account.getBalance());
             }
             dbcontroller.getInstance().Update_Account(account);
-            dbcontroller.getInstance().addTransaction(previousBalance,amount,"Withdraw",customer);
+            dbcontroller.getInstance().addTransaction(previousBalance,amount,"Debited",customer);
         }
         return indicator;
     }
@@ -67,50 +67,31 @@ public class Transaction {
             account.setMain_balance(account.getMain_balance()+amount);
             account.setStatus("Unmatured");
             dbcontroller.getInstance().Update_Account(account);
-            dbcontroller.getInstance().addTransaction(previousBalance,amount,"Deposit",customer);
+            dbcontroller.getInstance().addTransaction(previousBalance,amount,"Credited",customer);
         }
     }
 
-    public void TransferMoney(double amount,long payer_ac_number,long receiver_ac_number)
+    public void TransferMoney(double amount,Customer payer,Customer receiver)
     {
-        Customer payer;
-        Customer receiver;
         AlertGenerator alertGenerator = new AlertGenerator();
-        if(dbcontroller.getInstance().Verify_Account(payer_ac_number))
+        if(payer.getAccount().getType().equals("FixedDeposit"))
         {
-            payer = dbcontroller.getInstance().getCustomer();
-            payer.setAccount(dbcontroller.getInstance().getCustomer().getAccount());
-            if(dbcontroller.getInstance().Verify_Account(receiver_ac_number))
-            {
-                receiver = dbcontroller.getInstance().getCustomer();
-                receiver.setAccount(dbcontroller.getInstance().getCustomer().getAccount());
-                if(payer.getAccount().getType().equals("FixedDeposit"))
-                {
-                    alertGenerator.showErrorAlert("Transfer Money","You can't transfer money from your fixed deposit!!!");
-                    return ;
-                }
-                else if(receiver.getAccount().getType().equals("FixedDeposit"))
-                {
-                    alertGenerator.showErrorAlert("Transfer Money","You can't transfer money to fixed deposit accounts!!!");
-                    return ;
-                }
-                if(payer.getAccount().getTransaction().withdraw(amount,payer))
-                {
-                    receiver.getAccount().getTransaction().deposit(amount,receiver);
-                }
-                else
-                {
-                    alertGenerator.showErrorAlert("Transfer Money","Payer Don't have enough money in account!!!");
-                }
-            }
-            else
-            {
-                alertGenerator.showErrorAlert("Transfer Money","Receiver Account Number is not valid!!!");
-            }
+            alertGenerator.showErrorAlert("Transfer Money","You can't transfer money from your fixed deposit!!!");
+            return ;
+        }
+        else if(receiver.getAccount().getType().equals("FixedDeposit"))
+        {
+            alertGenerator.showErrorAlert("Transfer Money","You can't transfer money to fixed deposit accounts!!!");
+            return ;
+        }
+        if(payer.getAccount().getTransaction().withdraw(amount,payer))
+        {
+            receiver.getAccount().getTransaction().deposit(amount,receiver);
         }
         else
         {
-            alertGenerator.showErrorAlert("Transfer Money","Payer Account Number is not valid!!!");
+            alertGenerator.showErrorAlert("Transfer Money","Payer Don't have enough money in account!!!");
         }
     }
 }
+
