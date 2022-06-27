@@ -2,6 +2,7 @@ package com.projectyobank.controllers;
 
 import com.projectyobank.Main;
 import com.projectyobank.database.dbcontroller;
+import com.projectyobank.utils.AlertGenerator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,18 +49,14 @@ public class Controller {
 
     public void logoutButtonClick(ActionEvent e)
     {
-        try{
-            switchToScene("view/login.fxml",e);
+        AlertGenerator alertGenerator = new AlertGenerator();
+        if(alertGenerator.showConfirmationAlert("Logout","Do you want to logout?")) {
+            try {
+                switchToScene("view/login.fxml", e);
+            } catch (IOException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
-        catch(IOException exception)
-        {
-            System.out.println(exception.getMessage());
-        }
-    }
-
-    public void addAccountButtonClick(ActionEvent e)
-    {
-
     }
 
     public void transactionButtonClick(ActionEvent e)
@@ -68,6 +65,110 @@ public class Controller {
             switchToScene("view/transaction.fxml",e);
         }
         catch (IOException exception)
+        {
+            System.out.println(exception.getMessage());
+        }
+    }
+
+    public void addAccountButtonClick(ActionEvent e)
+    {
+        if(dbcontroller.getInstance().getBanker().add_Customer())
+        {
+            try{
+                switchToScene("view/addCustomer.fxml",e);
+            }
+            catch(IOException exception)
+            {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    public void editAccountButtonClick(ActionEvent e)
+    {
+        if(dbcontroller.getInstance().getBanker().edit_Customer())
+        {
+            try{
+                switchToScene("view/Edit_DeleteAccount.fxml",e);
+            }
+            catch(IOException exception)
+            {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    public void deleteAccountButtonClick(ActionEvent e)
+    {
+        if (dbcontroller.getInstance().getBanker().delete_Customer()) {
+            try {
+                switchToScene("view/Edit_DeleteAccount.fxml", e);
+            }
+            catch (IOException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    public void addEmployeeButtonClick(ActionEvent e)
+    {
+        if(dbcontroller.getInstance().getBanker().add_Employee())
+        {
+            try{
+                switchToScene("view/addEmployee.fxml",e);
+            }
+            catch(IOException exception)
+            {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    public void editEmployeeButtonClick(ActionEvent e)
+    {
+        if(dbcontroller.getInstance().getBanker().edit_Employee())
+        {
+            try{
+                switchToScene("view/editEmployee.fxml",e);
+            }
+            catch(IOException exception)
+            {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    public void deleteEmployeeButtonClick(ActionEvent e)
+    {
+        if(dbcontroller.getInstance().getBanker().delete_Employee())
+        {
+            try{
+                switchToScene("view/deleteEmployee.fxml",e);
+            }
+            catch(IOException exception)
+            {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    public void editPasswordButtonClick(ActionEvent e)
+    {
+        try{
+            switchToScene("view/editPassword.fxml",e);
+        }
+        catch(IOException exception)
+        {
+            System.out.println(exception.getMessage());
+        }
+    }
+
+    public void limitsManagerButtonClick(ActionEvent e)
+    {
+        try{
+            switchToScene("view/limitsManager.fxml",e);
+        }
+        catch(IOException exception)
         {
             System.out.println(exception.getMessage());
         }

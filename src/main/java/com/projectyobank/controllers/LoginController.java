@@ -38,5 +38,4 @@ public class LoginController extends Controller{
             passwordField.getStyleClass().add("wrong-credentials");
         }
     }
-
 }

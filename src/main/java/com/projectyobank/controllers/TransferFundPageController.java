@@ -12,19 +12,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TransferFundPageController extends Controller implements Initializable {
+public class TransferFundPageController extends BankerPageController {
     @FXML
     private JFXTextField PayerAccountNumberField;
     @FXML
     private JFXTextField ReceiverAccountNumberField;
     @FXML
     private JFXTextField WithdrawAmountField;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        BankerName.setText(dbcontroller.getInstance().getBanker().getUsername());
-        Designation.setText(dbcontroller.getInstance().getBanker().getDesignation());
-    }
 
     public void transferfundsButtonClick(ActionEvent e)
     {

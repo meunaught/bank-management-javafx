@@ -87,6 +87,7 @@ public class dbcontroller {
                 String temp = resultSet.getString("Designation");
                 if(temp.compareToIgnoreCase("Manager") == 0)
                 {
+                    System.out.println("Manager");
                     banker = new Manager(resultSet.getString("Username"),
                             resultSet.getString("PassWord"),
                             resultSet.getString("Designation"));
@@ -128,6 +129,108 @@ public class dbcontroller {
             }
         }
     }
+
+    public boolean Verify_Employee(String Username)  {
+        try {
+            conection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+            return false;
+//            System.exit(1);
+        }
+
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String Query = "select * from admin_login where Username = ?";
+
+        try {
+            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement.setString(1,Username);
+            resultSet = preparedStatement.executeQuery();
+            System.out.println("verify te dhukse");
+
+            if(resultSet.next()) {
+                return true;
+            }
+            return false;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                resultSet.close();
+                conection.close();
+                System.out.println("Yes in verify user login");
+            }
+            catch (SQLException exception)
+            {
+                System.out.println(exception.getMessage());
+            }
+            catch (NullPointerException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    public boolean Verify_Employee(String username,String password)  {
+        try {
+            conection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+            return false;
+//            System.exit(1);
+        }
+
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String Query = "select * from admin_login where Username = ? and PassWord = ?";
+
+        try {
+            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement.setString(1,username);
+            preparedStatement.setString(2,password);
+            resultSet = preparedStatement.executeQuery();
+            System.out.println("verify te dhukse");
+
+            if(resultSet.next()) {
+                return true;
+            }
+            return false;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                resultSet.close();
+                conection.close();
+                System.out.println("Yes in verify user login");
+            }
+            catch (SQLException exception)
+            {
+                System.out.println(exception.getMessage());
+            }
+            catch (NullPointerException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
 
 
     public boolean Verify_Account(long account_number)
@@ -218,20 +321,18 @@ public class dbcontroller {
         }
         catch (SQLException e)
         {
-            System.out.println(e);
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         catch (Exception e)
         {
-            System.out.println(e);
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+
         }
         finally {
             try {
                 preparedStatement.close();
                 resultSet.close();
                 conection.close();
-                System.out.println("Yes in set properties");
             }
             catch (SQLException e) {
                 e.printStackTrace();
@@ -265,6 +366,51 @@ public class dbcontroller {
             preparedStatement.setLong(4,account.getTime().getTime());
             preparedStatement.setString(5,account.getStatus());
             preparedStatement.setLong(6,account.getNumber());
+
+            System.out.println("eije");
+            int a = preparedStatement.executeUpdate();
+            System.out.println("Update database " + a);
+
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                conection.close();
+                //System.out.println("Yes in update database");
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+            catch (NullPointerException e) {
+                System.out.println(e);
+            }
+            catch(Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public void editEmployee(String username,String update,String Query)
+    {
+        try {
+            conection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+//            System.exit(1);
+        }
+
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement.setString(1,update);
+            preparedStatement.setString(2,username);
 
             System.out.println("eije");
             int a = preparedStatement.executeUpdate();
@@ -449,6 +595,113 @@ public class dbcontroller {
 
     }
 
+    public boolean editCustomer(String username,String address,String email,long phone)
+    {
+        try {
+            conection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+            return false;
+//            System.exit(1);
+        }
+
+        PreparedStatement preparedStatement = null;
+        String Query = "UPDATE Login_Info_For_Users SET Username = ? ,Email = ? ,Address = ?,phone = ? WHERE" +
+                " AccountNumber = ?";
+        try{
+            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement.setString(1,username);
+            preparedStatement.setString(2,email);
+            preparedStatement.setString(3,address);
+            preparedStatement.setLong(4,phone);
+            preparedStatement.setLong(5,dbcontroller.getInstance().getCustomer().getAccount().getNumber());
+
+            System.out.println("eije");
+            int a = preparedStatement.executeUpdate();
+            System.out.println("Update database " + a);
+            if(a == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+            return false;
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                conection.close();
+                //System.out.println("Yes in update database");
+            }
+            catch (SQLException exception) {
+                System.out.println(exception.getMessage());
+            }
+            catch (NullPointerException exception) {
+                System.out.println(exception.getMessage());
+            }
+            catch(Exception exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    public void deleteEmployee(String username)
+    {
+        try {
+            conection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+//            System.exit(1);
+        }
+        PreparedStatement preparedStatement = null;
+        String Query = "DELETE FROM admin_login WHERE Username = ?";
+        try{
+            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement.setString(1,username);
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException exception)
+        {
+            System.out.println(exception.getMessage());
+        }
+        catch(Exception exception)
+        {
+            System.out.println(exception.getMessage());
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                conection.close();
+                //System.out.println("Yes in update database");
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+            catch (NullPointerException e) {
+                System.out.println(e.getMessage());
+            }
+            catch(Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+
     public void addTransaction(double previousBalance,double amount,String transactionType,Customer customer)
     {
         try {
@@ -504,6 +757,51 @@ public class dbcontroller {
             }
             catch(Exception e) {
                 System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public void limitsManager(String rate,String hour,String maxWithdraw,String minAmount,String Query,String type)
+    {
+        try {
+            conection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+//            System.exit(1);
+        }
+
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = conection.prepareStatement(Query);
+            preparedStatement.setDouble(1,Double.parseDouble(rate));
+            preparedStatement.setDouble(2,Double.parseDouble(hour));
+            preparedStatement.setDouble(3,Double.parseDouble(maxWithdraw));
+            preparedStatement.setDouble(4,Double.parseDouble(minAmount));
+            preparedStatement.setString(5,type);
+
+            System.out.println("eije");
+            int a = preparedStatement.executeUpdate();
+            System.out.println("Update database " + a);
+
+        }
+        catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                conection.close();
+                //System.out.println("Yes in update database");
+            }
+            catch (SQLException exception) {
+                System.out.println(exception.getMessage());
+            }
+            catch(Exception exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }

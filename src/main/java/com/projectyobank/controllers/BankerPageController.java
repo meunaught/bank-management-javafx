@@ -16,21 +16,4 @@ public class BankerPageController extends Controller implements Initializable{
         Designation.setText(dbcontroller.getInstance().getBanker().getDesignation());
     }
 
-    public void transactionButtonClick(ActionEvent e)
-    {
-        try{
-            switchToScene("view/transaction.fxml",e);
-        }
-        catch (IOException exception)
-        {
-            System.out.println(exception.getMessage());
-        }
-    }
-
-    public void addAccountButtonClick(ActionEvent e)
-    {
-
-    }
-
-
 }

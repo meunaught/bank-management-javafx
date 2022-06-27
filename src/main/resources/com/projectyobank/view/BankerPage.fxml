@@ -126,7 +126,7 @@
                   <Insets right="40.0" />
                </padding>
             </JFXButton>
-            <JFXButton fx:id="AccountButton1" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Edit Account">
+            <JFXButton fx:id="EditAccountButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#editAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Edit Account">
                <graphic>
                   <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
                </graphic>
@@ -134,7 +134,7 @@
                   <Insets right="40.0" />
                </padding>
             </JFXButton>
-            <JFXButton fx:id="AccountButton11" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Delete Account">
+            <JFXButton fx:id="DeleteAccountButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#deleteAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Delete Account">
                <graphic>
                   <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
                </graphic>
@@ -142,7 +142,7 @@
                   <Insets right="40.0" />
                </padding>
             </JFXButton>
-            <JFXButton fx:id="AccountButton111" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Add Employee">
+            <JFXButton fx:id="AddEmployeeButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addEmployeeButtonClick" prefHeight="50.0" prefWidth="200.0" text="Add Employee">
                <graphic>
                   <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
                </graphic>
@@ -150,7 +150,7 @@
                   <Insets right="40.0" />
                </padding>
             </JFXButton>
-            <JFXButton fx:id="AccountButton1111" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Edit Employee">
+            <JFXButton fx:id="EditEmployeeButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#editEmployeeButtonClick" prefHeight="50.0" prefWidth="200.0" text="Edit Employee">
                <graphic>
                   <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
                </graphic>
@@ -158,7 +158,7 @@
                   <Insets right="40.0" />
                </padding>
             </JFXButton>
-            <JFXButton fx:id="AccountButton11111" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="DeleteEmployee">
+            <JFXButton fx:id="DeleteEmployeeButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#deleteEmployeeButtonClick" prefHeight="50.0" prefWidth="200.0" text="DeleteEmployee">
                <graphic>
                   <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
                </graphic>
@@ -166,7 +166,7 @@
                   <Insets right="40.0" />
                </padding>
             </JFXButton>
-            <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Limits Manager">
+            <JFXButton fx:id="LimitsManagerButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#limitsManagerButtonClick" prefHeight="50.0" prefWidth="200.0" text="Limits Manager">
                <graphic>
                   <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
                </graphic>
@@ -204,7 +204,7 @@
                <children>
                   <HBox prefHeight="66.0" prefWidth="214.0">
                      <children>
-                        <JFXButton prefHeight="50.0" prefWidth="200.0" text="Edit Password">
+                        <JFXButton fx:id="EditPasswordButton" onAction="#editPasswordButtonClick" prefHeight="50.0" prefWidth="200.0" text="Edit Password">
                            <graphic>
                               <FontAwesomeIconView glyphName="GEAR" size="1.5em" />
                            </graphic>

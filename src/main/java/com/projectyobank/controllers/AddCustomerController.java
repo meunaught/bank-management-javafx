@@ -7,26 +7,31 @@ import com.projectyobank.models.Customer;
 import com.projectyobank.utils.AlertGenerator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.util.Random;
 
-public class AddCustomerController extends Controller{
+public class AddCustomerController extends BankerPageController {
     @FXML
-    private TextField username;
+    private JFXTextField username;
     @FXML
-    private TextField accountType;
+    private JFXTextField accountType;
     @FXML
-    private TextField address;
+    private JFXTextField address;
     @FXML
-    private TextField email;
+    private JFXTextField email;
     @FXML
-    private TextField phone;
+    private JFXTextField phone;
     @FXML
-    private TextField balance;
+    private JFXTextField balance;
 
-    public void addCustomer(ActionEvent e)
+
+
+    public void addCustomerButtonClick(ActionEvent e)
     {
+        AlertGenerator alertGenerator = new AlertGenerator();
         try {
             String username = this.username.getText();
             String accountType = this.accountType.getText();
@@ -35,12 +40,12 @@ public class AddCustomerController extends Controller{
             long phone = Integer.parseInt(this.phone.getText());
             double balance = Double.parseDouble(this.balance.getText());
             if (username.isEmpty() || accountType.isEmpty() || address.isEmpty() || email.isEmpty()) {
-                System.out.println("Every box has to be filled ");
+                alertGenerator.showErrorAlert("New Customer","Every box has to be filled ");
             }
             else if(!(accountType.equals("Current")|| accountType.equals("Savings") || accountType.equals("Islamic")
             || accountType.equals("FixedDeposit")||accountType.equals("CreditCard")))
             {
-                System.out.println("Please Enter Validated Account Type");
+                alertGenerator.showErrorAlert("New Customer","Please Enter Validated Account Type");
             }
             else {
                 long accountNumber;
@@ -58,7 +63,6 @@ public class AddCustomerController extends Controller{
                 Customer customer = new Customer(username,email,phone,address);
                 customer.setAccount(accountType,accountNumber,System.currentTimeMillis(),balance,balance,0);
                 dbcontroller.getInstance().SetProperties(customer.getAccount());
-                AlertGenerator alertGenerator = new AlertGenerator();
                 if(customer.getAccount().getMinimum_amount_for_account_creation()>balance)
                 {
                     alertGenerator.showErrorAlert("New Customer","Minimum amount for " + accountType +" is " +
@@ -73,18 +77,20 @@ public class AddCustomerController extends Controller{
         }
         catch(NumberFormatException exception)
         {
-            System.out.println("phone/balance has to be numbers");
-            System.out.println(exception);
+            alertGenerator.showErrorAlert("New Customer","Phone/Balance has to be numbers");
         }
         catch(Exception exception)
         {
-            System.out.println("add customer e problem");
-            System.out.println( exception);
+            System.out.println( exception.getMessage());
         }
     }
 
-    public void goBack(ActionEvent e)
+    public void previousButtonClick(ActionEvent e)
     {
-        giveFilename("view/AdminPage.fxml",e);
+        try {
+            switchToScene("view/BankerPage.fxml",e);
+        } catch (IOException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 }

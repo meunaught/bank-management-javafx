@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1154.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.TransactionPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1154.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.LimitsManagerPageController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -112,26 +113,6 @@
    <center>
       <AnchorPane prefHeight="652.0" prefWidth="940.0" BorderPane.alignment="CENTER">
          <children>
-            <JFXButton fx:id="WithdrawButton" buttonType="RAISED" layoutX="315.0" layoutY="132.0" onAction="#withdrawButtonClick" prefHeight="70.0" prefWidth="190.0" text="Withdraw Money">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="DepositButton" buttonType="RAISED" layoutX="656.0" layoutY="132.0" onAction="#depositButtonClick" prefHeight="70.0" prefWidth="190.0" text="Deposit Money">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="TransferfundsButton" buttonType="RAISED" layoutX="482.0" layoutY="288.0" onAction="#transferfundsButtonClick" prefHeight="70.0" prefWidth="190.0" text="TransferFunds">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="PreviousButton" buttonType="RAISED" layoutX="220.0" layoutY="527.0" onAction="#previousButtonClick" prefHeight="70.0" prefWidth="190.0" text="Previous">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
             <VBox prefHeight="646.0" prefWidth="214.0">
                <children>
                   <Separator prefWidth="200.0" />
@@ -246,6 +227,110 @@
                   </VBox>
                </children>
             </VBox>
+            <HBox layoutX="215.0" layoutY="-3.0" prefHeight="502.0" prefWidth="712.0">
+               <children>
+                  <VBox prefHeight="502.0" prefWidth="142.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="52.0" prefWidth="142.0" text="Type">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="90.0" prefWidth="142.0" text="Current">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="90.0" prefWidth="142.0" text="Savings">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="90.0" prefWidth="142.0" text="Fixed Deposit">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="90.0" prefWidth="142.0" text="Islamic">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="90.0" prefWidth="142.0" text="Credit Card">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="502.0" prefWidth="142.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="52.0" prefWidth="142.0" text="InterestRate">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="currentRate" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="savingsRate" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="fixedDepositRate" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="islamicRate" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="creditcardRate" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="502.0" prefWidth="142.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="52.0" prefWidth="152.0" text="RateHour">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="currentHour" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="savingsHour" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="fixedDepositHour" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="islamicHour" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="creditcardHour" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="502.0" prefWidth="142.0">
+                     <children>
+                        <Label prefHeight="52.0" prefWidth="142.0" text="MaximumWithdraw">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="currentMaximumWithdraw" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="savingsMaximumWithdraw" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="fixedDepositMaximumWithdraw" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="islamicMaximumWithdraw" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="creditcardMaximumWithdraw" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="502.0" prefWidth="142.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="52.0" prefWidth="142.0" text="MinimumAmount">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="currentMinimumAmount" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="savingsMinimumAmount" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="fixedDepositMinimumAmount" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="islamicMinimumAmount" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                        <JFXTextField fx:id="creditcardMinimumAmount" alignment="CENTER" prefHeight="89.0" prefWidth="142.0" promptText="Enter Rate" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <JFXButton fx:id="PreviousButton" buttonType="RAISED" layoutX="215.0" layoutY="545.0" onAction="#previousButtonClick" prefHeight="70.0" prefWidth="190.0" text="Previous">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="UpdateButton" layoutX="737.0" layoutY="556.0" onAction="#updateButtonClick" prefHeight="48.0" prefWidth="174.0" text="Update">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
    </center>
