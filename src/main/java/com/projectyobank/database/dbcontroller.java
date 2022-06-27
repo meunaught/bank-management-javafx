@@ -576,6 +576,62 @@ public class dbcontroller {
         }
         return null;
     }
-}
+
+    public ArrayList<Customer> transArrayList() {
+        try {
+            conection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+//            System.exit(1);
+        }
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String Query = "select * from trans";
+        try {
+            preparedStatement = conection.prepareStatement(Query);
+            resultSet = preparedStatement.executeQuery();
+            ArrayList<Customer> customerArrayList = new ArrayList<>();
+            while(resultSet.next())
+            {
+                Transaction transaction = new Transaction(
+                        (resultSet.getString(("PreviousBalance"))),
+                        resultSet.getString("CurrentBalance"),
+                        resultSet.getString("Date"),
+                        resultSet.getString("TransactionType"),
+                        resultSet.getString("TransactionAmount")
+                );
+                Customer customer = new Customer();
+                customer.setUsername(resultSet.getString("Username"));
+                customer.setAccount(new Account());
+                customer.getAccount().setNumber(resultSet.getLong("AccountNumber"));
+                customer.getAccount().setTransaction(transaction);
+                customerArrayList.add(customer);
+            }
+            return customerArrayList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                resultSet.close();
+                conection.close();
+                System.out.println("Yes in  customerList generator");
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+        return null;
+    }
+ }
 
 

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1154.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.DashboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1154.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.StatementController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -239,11 +239,11 @@
             <JFXTreeTableView fx:id="treeTableView" prefHeight="651.0" prefWidth="940.0">
                <columns>
                   <JFXTreeTableColumn fx:id="userNameColumn" minWidth="133" prefWidth="133" resizable="false" text="Customer ID" />
-                  <JFXTreeTableColumn fx:id="accTypeColumn" minWidth="133" resizable="false" text="Account Type" />
-                  <JFXTreeTableColumn fx:id="accColumn" minWidth="-1.0" prefWidth="197.0" resizable="false" text="Account Number" />
-                  <JFXTreeTableColumn fx:id="balanceColumn" minWidth="0.0" prefWidth="145.0" resizable="false" text="Balance" />
-                  <JFXTreeTableColumn fx:id="phoneColumn" minWidth="-1.0" prefWidth="197.0" text="Contact" />
-                  <JFXTreeTableColumn fx:id="statusColumn" minWidth="133" prefWidth="133" resizable="false" text="Status" />
+                  <JFXTreeTableColumn fx:id="accTypeColumn" minWidth="133" resizable="false" text="Transaction Type" />
+                  <JFXTreeTableColumn fx:id="accColumn" minWidth="133.0" prefWidth="150.0" resizable="false" text="Account Number" />
+                  <JFXTreeTableColumn fx:id="prevbalanceColumn" minWidth="0.0" prefWidth="145.0" resizable="false" text="Previous Balance" />
+                  <JFXTreeTableColumn fx:id="balanceColumn" minWidth="-1.0" prefWidth="145.0" text="Balance" />
+                  <JFXTreeTableColumn fx:id="DateColumn" minWidth="-1.0" prefWidth="232.0" text="Date" />
                </columns>
             </JFXTreeTableView>
          </children>

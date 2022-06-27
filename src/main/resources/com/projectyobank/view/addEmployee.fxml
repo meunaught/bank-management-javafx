@@ -198,7 +198,7 @@
                         <Insets right="40.0" />
                      </padding>
                   </JFXButton>
-                  <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Statement">
+                  <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" onAction="#statementButtonClick" prefHeight="50.0" prefWidth="200.0" text="Statement">
                      <graphic>
                         <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
                      </graphic>

@@ -5,8 +5,65 @@ import com.projectyobank.utils.AlertGenerator;
 import javafx.scene.control.Alert;
 
 public class Transaction {
+    private String prevBal;
+    private String currBal;
+    private String Date;
+    private String type;
+    private String amount;
 
-    public boolean withdraw(double amount,Customer customer)
+    public String getPrevBal() {
+        return prevBal;
+    }
+
+    public String getCurrBal() {
+        return currBal;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setPrevBal(String prevBal) {
+        this.prevBal = prevBal;
+    }
+
+    public void setCurrBal(String currBal) {
+        this.currBal = currBal;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public Transaction() {
+
+    }
+
+    public Transaction(String prevBal, String currBal, String date, String type, String amount) {
+        this.prevBal = prevBal;
+        this.currBal = currBal;
+        Date = date;
+        this.type = type;
+        this.amount = amount;
+    }
+
+    public boolean withdraw(double amount, Customer customer)
     {
         Account account = customer.getAccount();
         account.createBalance();
@@ -92,5 +149,7 @@ public class Transaction {
             alertGenerator.showErrorAlert("Transfer Money","Payer Don't have enough money in account!!!");
         }
     }
+
+
 }
 

@@ -174,4 +174,15 @@ public class Controller {
             System.out.println(exception.getMessage());
         }
     }
+
+    public void statementButtonClick(ActionEvent e) {
+        try{
+            System.out.println("cdi");
+            switchToScene("view/Statement.fxml",e);
+        }
+        catch(IOException exception)
+        {
+            System.out.println(exception.getMessage());
+        }
+    }
 }
