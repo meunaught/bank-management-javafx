@@ -17,8 +17,8 @@ public class DeleteEmployeeController extends Controller implements Initializabl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        BankerName.setText(dbcontroller.getInstance().getBanker().getUsername());
-        Designation.setText(dbcontroller.getInstance().getBanker().getDesignation());
+        init();
+
     }
 
     public void deleteButtonClick(ActionEvent e)

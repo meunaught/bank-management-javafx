@@ -22,6 +22,10 @@ public class dbcontroller {
     }
 
 
+    public int sessionTrans = 0;
+    public double TotalDebit = 0;
+    public double totalCredit = 0;
+
     public static Connection Connector()
     {
         try {

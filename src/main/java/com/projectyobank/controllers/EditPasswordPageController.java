@@ -22,8 +22,8 @@ public class EditPasswordPageController extends Controller implements Initializa
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        BankerName.setText(dbcontroller.getInstance().getBanker().getUsername());
-        Designation.setText(dbcontroller.getInstance().getBanker().getDesignation());
+        init();
+
     }
 
     public void changePasswordButtonClick(ActionEvent e)

@@ -100,6 +100,8 @@ public class Transaction {
             account.setCurrent_withdraw_amount(amount+account.getCurrent_withdraw_amount());
             dbcontroller.getInstance().Update_Account(account);
             dbcontroller.getInstance().addTransaction(previousBalance,amount,"Debited",customer);
+            ++dbcontroller.getInstance().sessionTrans;
+            dbcontroller.getInstance().TotalDebit += amount;
         }
         return indicator;
     }
@@ -124,6 +126,8 @@ public class Transaction {
             account.setStatus("Unmatured");
             dbcontroller.getInstance().Update_Account(account);
             dbcontroller.getInstance().addTransaction(previousBalance,amount,"Credited",customer);
+            ++dbcontroller.getInstance().sessionTrans;
+            dbcontroller.getInstance().totalCredit += amount;
         }
     }
 
@@ -143,6 +147,7 @@ public class Transaction {
         if(payer.getAccount().getTransaction().withdraw(amount,payer))
         {
             receiver.getAccount().getTransaction().deposit(amount,receiver);
+            --dbcontroller.getInstance().sessionTrans;
         }
         else
         {

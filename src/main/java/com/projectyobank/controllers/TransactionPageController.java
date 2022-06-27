@@ -12,8 +12,8 @@ public class TransactionPageController extends Controller implements Initializab
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        BankerName.setText(dbcontroller.getInstance().getBanker().getUsername());
-        Designation.setText(dbcontroller.getInstance().getBanker().getDesignation());
+        init();
+
     }
 
     public void withdrawButtonClick(ActionEvent e)

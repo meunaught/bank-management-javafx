@@ -51,8 +51,7 @@ public class EditAccountController extends Controller implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        BankerName.setText(dbcontroller.getInstance().getBanker().getUsername());
-        Designation.setText(dbcontroller.getInstance().getBanker().getDesignation());
+        init();
         username.setText(dbcontroller.getInstance().getBanker().getCustomer().getUsername());
         address.setText(dbcontroller.getInstance().getBanker().getCustomer().getAddress());
         email.setText(dbcontroller.getInstance().getBanker().getCustomer().getEmail());

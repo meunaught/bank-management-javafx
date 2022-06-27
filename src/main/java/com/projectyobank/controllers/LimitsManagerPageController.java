@@ -62,8 +62,7 @@ public class LimitsManagerPageController extends  Controller implements Initiali
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        BankerName.setText(dbcontroller.getInstance().getBanker().getUsername());
-        Designation.setText(dbcontroller.getInstance().getBanker().getDesignation());
+        init();
 
         try {
             Account account = new Account();

@@ -19,8 +19,8 @@ public class EditEmployeeController extends Controller implements Initializable 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        BankerName.setText(dbcontroller.getInstance().getBanker().getUsername());
-        Designation.setText(dbcontroller.getInstance().getBanker().getDesignation());
+        init();
+
     }
 
     public void updateButtonClick(ActionEvent e)

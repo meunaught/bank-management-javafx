@@ -27,6 +27,24 @@ public class Controller {
     Label BankerName;
     @FXML
     Label Designation;
+    @FXML
+    Label Customers;
+    @FXML
+    Label Transactions;
+    @FXML
+    Label TotalDebit;
+    @FXML
+    Label TotalCredit;
+
+
+    public void init() {
+        BankerName.setText(dbcontroller.getInstance().getBanker().getUsername());
+        Designation.setText(dbcontroller.getInstance().getBanker().getDesignation());
+        Customers.setText(String.valueOf(dbcontroller.getInstance().customerArrayList().size()));
+        Transactions.setText(String.valueOf(dbcontroller.getInstance().sessionTrans));
+        TotalCredit.setText(String.valueOf(dbcontroller.getInstance().totalCredit));
+        TotalDebit.setText(String.valueOf(dbcontroller.getInstance().TotalDebit));
+    }
 
     public void switchToScene(String FileName, ActionEvent e) throws IOException
     {
@@ -83,6 +101,18 @@ public class Controller {
             }
             catch(IOException exception)
             {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    public void deleteAccountButtonClick(ActionEvent e)
+    {
+        if (dbcontroller.getInstance().getBanker().delete_Customer()) {
+            try {
+                switchToScene("view/Edit_DeleteAccount.fxml", e);
+            }
+            catch (IOException exception) {
                 System.out.println(exception.getMessage());
             }
         }
@@ -164,12 +194,13 @@ public class Controller {
     }
 
     public void statementButtonClick(ActionEvent e) {
-        if(dbcontroller.getInstance().getBanker().statement()) {
-            try {
-                switchToScene("view/Statement.fxml", e);
-            } catch (IOException exception) {
-                System.out.println(exception.getMessage());
-            }
+        try{
+            System.out.println("cdi");
+            switchToScene("view/Statement.fxml",e);
+        }
+        catch(IOException exception)
+        {
+            System.out.println(exception.getMessage());
         }
     }
 }
