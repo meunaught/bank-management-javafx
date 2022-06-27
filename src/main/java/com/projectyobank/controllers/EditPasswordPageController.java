@@ -53,7 +53,7 @@ public class EditPasswordPageController extends Controller implements Initializa
     public void previousButtonClick(ActionEvent e)
     {
         try{
-            switchToScene("view/BankerPage.fxml",e);
+            switchToScene("view/Dashboard.fxml",e);
         }
         catch(IOException exception)
         {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableColumn?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1154.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.BankerPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="758.0" prefWidth="1154.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectyobank.controllers.DashboardController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -232,29 +232,20 @@
          <children>
             <HBox prefHeight="27.0" prefWidth="940.0">
                <children>
-                  <FontAwesomeIconView glyphName="SEARCH" size="1.3em">
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </FontAwesomeIconView>
-                  <JFXTextField prefHeight="25.0" prefWidth="306.0" />
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <HBox prefHeight="27.0" prefWidth="444.0">
-                     <children>
-                        <FontAwesomeIconView glyphName="SEARCH" size="1.3em" />
-                        <JFXComboBox prefHeight="25.0" prefWidth="355.0" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="27.0" prefWidth="393.0">
-                     <children>
-                        <Separator orientation="VERTICAL" prefHeight="200.0" />
-                        <FontAwesomeIconView glyphName="ARROW_UP" size="1.3em" />
-                        <JFXComboBox prefHeight="25.0" prefWidth="280.0" />
-                     </children>
-                  </HBox>
+                  <JFXTextField fx:id="searchField" prefHeight="25.0" prefWidth="947.0" promptText="Search..." />
                </children>
             </HBox>
-            <JFXTreeTableView prefHeight="651.0" prefWidth="940.0" />
+            <JFXTreeTableView fx:id="treeTableView" prefHeight="651.0" prefWidth="940.0">
+               <columns>
+                  <JFXTreeTableColumn fx:id="userNameColumn" minWidth="133" prefWidth="133" resizable="false" text="Customer ID" />
+                  <JFXTreeTableColumn fx:id="accTypeColumn" minWidth="133" resizable="false" text="Account Type" />
+                  <JFXTreeTableColumn fx:id="accColumn" minWidth="-1.0" prefWidth="197.0" resizable="false" text="Account Number" />
+                  <JFXTreeTableColumn fx:id="balanceColumn" minWidth="0.0" prefWidth="145.0" resizable="false" text="Balance" />
+                  <JFXTreeTableColumn fx:id="phoneColumn" minWidth="-1.0" prefWidth="197.0" text="Contact" />
+                  <JFXTreeTableColumn fx:id="statusColumn" minWidth="133" prefWidth="133" resizable="false" text="Status" />
+               </columns>
+            </JFXTreeTableView>
          </children>
       </VBox>
    </center>

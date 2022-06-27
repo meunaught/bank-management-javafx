@@ -27,7 +27,7 @@ public class LoginController extends Controller{
         if(dbcontroller.getInstance().Verify_User_Login(usernameField.getText(), passwordField.getText())) {
             try {
 //                System.out.println("switchToScene er agei asi");
-                switchToScene("view/BankerPage.fxml", e);
+                switchToScene("view/Dashboard.fxml", e);
             }
             catch (IOException exception) {
                 exception.printStackTrace();

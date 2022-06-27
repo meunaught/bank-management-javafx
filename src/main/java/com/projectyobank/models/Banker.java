@@ -1,10 +1,13 @@
 package com.projectyobank.models;
 
+import java.util.ArrayList;
+
 abstract public class Banker{
     private String password;
     private String designation;
     private String username;
     private Customer customer;
+    private ArrayList<Customer> customerArrayList;
 
     public Banker(String username, String password, String designation) {
         this.username = username;
@@ -38,6 +41,12 @@ abstract public class Banker{
     public void setCustomer(String username,String email,long phone,String address)
     {
         this.customer = new Customer(username,email,phone,address);
+    }
+    public void setCustomerArrayList() {
+        this.customerArrayList = new ArrayList<>();
+    }
+    public ArrayList<Customer> getCustomerArrayList() {
+        return this.customerArrayList;
     }
 
     abstract public boolean add_Customer();

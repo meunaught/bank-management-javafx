@@ -544,6 +544,56 @@ public class dbcontroller {
             }
         }
     }
+
+    public ArrayList<Customer> customerArrayList() {
+        try {
+            conection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        conection = dbcontroller.Connector();
+        if (conection == null) {
+            System.out.println("connection not successful");
+//            System.exit(1);
+        }
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String Query = "select * from Login_Info_For_Users";
+        try {
+            preparedStatement = conection.prepareStatement(Query);
+            resultSet = preparedStatement.executeQuery();
+            banker.setCustomerArrayList();
+            while(resultSet.next())
+            {
+                banker.setCustomer(resultSet.getString("Username"),resultSet.getString("email"),
+                        resultSet.getLong("phone"),resultSet.getString("Address"));
+
+                banker.getCustomer().setAccount(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
+                        resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
+                        resultSet.getDouble("WithdrawAmount"));
+                banker.getCustomerArrayList().add(banker.getCustomer());
+            }
+            return banker.getCustomerArrayList();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                resultSet.close();
+                conection.close();
+                System.out.println("Yes in  customerList generator");
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+        return null;
+    }
 }
 
 
