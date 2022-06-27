@@ -88,18 +88,6 @@ public class Controller {
         }
     }
 
-    public void deleteAccountButtonClick(ActionEvent e)
-    {
-        if (dbcontroller.getInstance().getBanker().delete_Customer()) {
-            try {
-                switchToScene("view/Edit_DeleteAccount.fxml", e);
-            }
-            catch (IOException exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
-    }
-
     public void addEmployeeButtonClick(ActionEvent e)
     {
         if(dbcontroller.getInstance().getBanker().add_Employee())
@@ -176,13 +164,12 @@ public class Controller {
     }
 
     public void statementButtonClick(ActionEvent e) {
-        try{
-            System.out.println("cdi");
-            switchToScene("view/Statement.fxml",e);
-        }
-        catch(IOException exception)
-        {
-            System.out.println(exception.getMessage());
+        if(dbcontroller.getInstance().getBanker().statement()) {
+            try {
+                switchToScene("view/Statement.fxml", e);
+            } catch (IOException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
     }
 }

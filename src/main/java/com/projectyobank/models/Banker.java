@@ -57,5 +57,6 @@ abstract public class Banker{
     abstract public boolean delete_Employee();
     abstract public boolean limitsManger();
     abstract public boolean makeTransaction();
+    abstract public boolean statement();
 
 }

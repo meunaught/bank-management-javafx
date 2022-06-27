@@ -62,4 +62,9 @@ public class Junior_Officer extends Banker{
     public boolean makeTransaction() {
         return true;
     }
+
+    @Override
+    public boolean statement() {
+        return true;
+    }
 }

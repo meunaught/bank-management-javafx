@@ -47,4 +47,9 @@ public class Manager extends Banker{
         return true;
     }
 
+    @Override
+    public boolean statement() {
+        return true;
+    }
+
 }

@@ -51,7 +51,7 @@
                   <HBox />
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="190.0">
                      <children>
-                        <Label text="6969">
+                        <Label fx:id="Customers" text="6969">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -61,7 +61,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="171.0">
                      <children>
-                        <Label text="6969">
+                        <Label fx:id="Transactions" text="6969">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -71,7 +71,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="177.0">
                      <children>
-                        <Label text="6969">
+                        <Label fx:id="TotalDebit" text="6969">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -81,7 +81,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="177.0">
                      <children>
-                        <Label text="6969">
+                        <Label fx:id="TotalCredit" text="6969">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -188,7 +188,7 @@
                   <Insets right="40.0" />
                </padding>
             </JFXButton>
-            <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" onAction="#statementButtonClick" prefHeight="50.0" prefWidth="200.0" text="Statement">
+            <JFXButton fx:id="StatementButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#statementButtonClick" prefHeight="50.0" prefWidth="200.0" text="Statement">
                <graphic>
                   <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
                </graphic>
