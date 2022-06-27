@@ -35,11 +35,6 @@ abstract public class Banker{
         return this.username;
     }
 
-    public void edit_Password_and_Username()
-    {
-
-    }
-
     abstract public boolean add_Customer();
     abstract public boolean edit_Customer();
     abstract public boolean delete_Customer();

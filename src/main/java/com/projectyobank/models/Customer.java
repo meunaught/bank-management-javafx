@@ -10,7 +10,6 @@ public class Customer{
     private long phone;
     private String address;
     private Account account;
-    private ArrayList<Account> accountlist;
 
     public Customer()
     {

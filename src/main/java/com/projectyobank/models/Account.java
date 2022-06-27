@@ -2,13 +2,13 @@ package com.projectyobank.models;
 
 import com.projectyobank.database.dbcontroller;
 
+import java.lang.reflect.Type;
 import java.sql.Time;
 import java.util.Date;
 
 public class Account {
     private String type;
     private long number;
-    private Date date_of_creation;
     private Time time;
     private Transaction transaction;
     private double balance;
@@ -21,7 +21,8 @@ public class Account {
 
     public Account()
     {
-
+        this.interest = new Interest();
+        this.transaction = new Transaction();
     }
 
     public Account(String type,long number,long time,double balance,double main_balance,double withdraw_amount)
@@ -42,9 +43,6 @@ public class Account {
 
     public void setNumber(long number){this.number = number;}
     public long getNumber(){return this.number;}
-
-    public void setDate_of_creation(Date date){this.date_of_creation = date;}
-    public Date getDate_of_creation(){return this.date_of_creation;}
 
     public void setTime(long time){this.time = new Time(time);}
     public Time getTime(){return this.time;}
@@ -74,37 +72,34 @@ public class Account {
     public String getStatus(){return this.Status;}
 
 
-    public void createBalance(Account account){
-        Time time;
-        Date date;
+    public void createBalance(){
         double hours;
-        time = account.getTime();
-        date = new Date();
-        hours = (date.getTime() - time.getTime())/(1000*60*60*1.0);
-        dbcontroller.getInstance().SetProperties(account);
-        hours /=account.getInterest().getRate_hour();
+        Date date = new Date();
+        hours = (date.getTime() - this.time.getTime())/(1000*60*60*1.0);
+        dbcontroller.getInstance().SetProperties(this);
+        hours /=this.interest.getRate_hour();
         System.out.println(hours);
         if(hours>=1)
         {
-            if(account.getType().equals("Current"))
+            if(this.type.equals("Current"))
             {
-                account.setBalance(account.getInterest().simple_interest(hours,account));
+                this.setBalance(this.interest.simple_interest(hours,this));
             }
-            else if(account.getType().equals("FixedDeposit"))
+            else if(this.type.equals("FixedDeposit"))
             {
-                if(account.getStatus().equals("Unmatured"))
+                if(this.Status.equals("Unmatured"))
                 {
-                    account.setStatus("Matured");
-                    account.setBalance(account.getInterest().compound_interest(1,account));
+                    this.setStatus("Matured");
+                    this.setBalance(this.interest.compound_interest(1,this));
                 }
             }
             else
             {
-                account.setBalance(account.getInterest().compound_interest(hours,account));
+                this.setBalance(this.interest.compound_interest(hours,this));
             }
             long temp = (long)(hours-Math.floor(hours))*60*60*1000;
-            account.getTime().setTime(date.getTime()-temp);
-            dbcontroller.getInstance().Update_Account(account);
+            this.time.setTime(date.getTime()-temp);
+            dbcontroller.getInstance().Update_Account(this);
         }
     }
 }

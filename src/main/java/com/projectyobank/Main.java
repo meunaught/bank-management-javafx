@@ -9,23 +9,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
-//    @Override public void init() throws Exception {
-//
-//    }
-
     @Override
     public void start(Stage stage) throws Exception {
         Parent root  = FXMLLoader.load(Main.class.getResource("view/login.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Yo Online Bank");
-        //Image icon = new Image("file:///C:/Users/User/IdeaProjects/HelloFX/Icon.png");
-        //stage.getIcons().add(icon);
-        //stage.setWidth(650);
-        //stage.setHeight(500);
+        stage.setTitle("The Banker's App");
         stage.setResizable(false);
-
         stage.show();
     }
 

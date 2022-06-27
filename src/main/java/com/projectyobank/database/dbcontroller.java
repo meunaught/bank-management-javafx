@@ -15,27 +15,24 @@ public class dbcontroller {
     public static dbcontroller getInstance() {
         return instance;
     }
-    //models
+
     private Banker banker;
     private Customer customer;
-//    private Account account;
 
     public Banker getBanker() {
         return banker;
     }
     public Customer getCustomer(){return customer;}
-//    public Account getAccount() {return account;}
 
 
     public static Connection Connector()
     {
         try {
-//            System.out.println("fffffffffffffffffffffffffff");
             Class.forName("org.sqlite.JDBC");
             Connection conn = DriverManager.getConnection("jdbc:sqlite:my_Database.db");
             return conn;
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -45,33 +42,25 @@ public class dbcontroller {
         conection = dbcontroller.Connector();
         if (conection == null) {
             System.out.println("connection not successful");
-//            System.exit(1);
         }
     }
 
-    public boolean isDbConnected() {
-        try {
-            return !conection.isClosed();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return false;
-        }
-    }
 
-    public boolean Verify_User_Login(String Username,String Password)  {
+    public void connectDatabase()
+    {
         try {
             conection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            System.out.println(e.getMessage());
         }
         conection = dbcontroller.Connector();
         if (conection == null) {
             System.out.println("connection not successful");
-//            System.exit(1);
         }
+    }
 
+    public boolean Verify_User_Login(String Username,String Password)  {
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String Query = "select * from admin_login where Username = ? and PassWord = ?";
@@ -81,7 +70,6 @@ public class dbcontroller {
             preparedStatement.setString(1,Username);
             preparedStatement.setString(2,Password);
             resultSet = preparedStatement.executeQuery();
-            System.out.println("verify te dhukse");
 
             if(resultSet.next()) {
                 String temp = resultSet.getString("Designation");
@@ -109,8 +97,10 @@ public class dbcontroller {
             }
             return false;
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }
+        catch(SQLException | NullPointerException exception)
+        {
+            System.out.println(exception.getMessage());
             return false;
         }
         finally {
@@ -118,32 +108,16 @@ public class dbcontroller {
                 preparedStatement.close();
                 resultSet.close();
                 conection.close();
-                System.out.println("Yes in verify user login");
             }
-            catch (SQLException e)
+            catch(SQLException | NullPointerException exception)
             {
-                e.printStackTrace();
-            }
-            catch (NullPointerException e) {
-                System.out.println(e);
+                System.out.println(exception.getMessage());
             }
         }
     }
 
     public boolean Verify_Employee(String Username)  {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-            return false;
-//            System.exit(1);
-        }
-
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String Query = "select * from admin_login where Username = ?";
@@ -159,8 +133,8 @@ public class dbcontroller {
             }
             return false;
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException | NullPointerException exception) {
+            System.out.println(exception.getMessage());
             return false;
         }
         finally {
@@ -168,32 +142,16 @@ public class dbcontroller {
                 preparedStatement.close();
                 resultSet.close();
                 conection.close();
-                System.out.println("Yes in verify user login");
             }
-            catch (SQLException exception)
+            catch (SQLException | NullPointerException exception)
             {
-                System.out.println(exception.getMessage());
-            }
-            catch (NullPointerException exception) {
                 System.out.println(exception.getMessage());
             }
         }
     }
 
     public boolean Verify_Employee(String username,String password)  {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-            return false;
-//            System.exit(1);
-        }
-
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String Query = "select * from admin_login where Username = ? and PassWord = ?";
@@ -210,8 +168,8 @@ public class dbcontroller {
             }
             return false;
 
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException | NullPointerException exception) {
+            System.out.println(exception.getMessage());
             return false;
         }
         finally {
@@ -221,11 +179,8 @@ public class dbcontroller {
                 conection.close();
                 System.out.println("Yes in verify user login");
             }
-            catch (SQLException exception)
+            catch (SQLException | NullPointerException exception)
             {
-                System.out.println(exception.getMessage());
-            }
-            catch (NullPointerException exception) {
                 System.out.println(exception.getMessage());
             }
         }
@@ -235,17 +190,7 @@ public class dbcontroller {
 
     public boolean Verify_Account(long account_number)
     {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-//            System.exit(1);
-        }
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String Query = "select * from Login_Info_For_Users where AccountNumber = ?";
@@ -272,8 +217,8 @@ public class dbcontroller {
                 return false;
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException | NullPointerException exception) {
+            System.out.println(exception.getMessage());;
             return false;
         }
         finally {
@@ -283,26 +228,15 @@ public class dbcontroller {
                 conection.close();
                 System.out.println("Yes in  verify account");
             }
-            catch (SQLException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                System.out.println(e);
+            catch (SQLException | NullPointerException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
 
     public void SetProperties(Account account)
     {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-//            System.exit(1);
-        }
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String Query = "select * from Account_Properties where Type = ?";
@@ -319,14 +253,9 @@ public class dbcontroller {
                 account.setMinimum_amount_for_account_creation(resultSet.getDouble("MinimumAmount"));
             }
         }
-        catch (SQLException e)
+        catch (SQLException | NullPointerException exception)
         {
-            System.out.println(e.getMessage());
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-
+            System.out.println(exception.getMessage());
         }
         finally {
             try {
@@ -334,27 +263,15 @@ public class dbcontroller {
                 resultSet.close();
                 conection.close();
             }
-            catch (SQLException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                System.out.println(e);
+            catch (SQLException | NullPointerException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
 
     public void Update_Account(Account account)
     {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-//            System.exit(1);
-        }
-
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         String Query = "UPDATE Login_Info_For_Users SET Balance = ? ,MainBalance = ? ,WithdrawAmount = ?,Time = ?,Status = ? WHERE" +
                 " AccountNumber = ?";
@@ -366,90 +283,51 @@ public class dbcontroller {
             preparedStatement.setLong(4,account.getTime().getTime());
             preparedStatement.setString(5,account.getStatus());
             preparedStatement.setLong(6,account.getNumber());
-
-            System.out.println("eije");
-            int a = preparedStatement.executeUpdate();
-            System.out.println("Update database " + a);
+            preparedStatement.executeUpdate();
 
         }
-        catch (SQLException e) {
-            e.printStackTrace();
+        catch (SQLException | NullPointerException exception) {
+            System.out.println(exception.getMessage());
         }
         finally {
             try {
                 preparedStatement.close();
                 conection.close();
-                //System.out.println("Yes in update database");
             }
-            catch (SQLException e) {
-                e.printStackTrace();
-            }
-            catch (NullPointerException e) {
-                System.out.println(e);
-            }
-            catch(Exception e) {
-                System.out.println(e);
+            catch (SQLException | NullPointerException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
 
     public void editEmployee(String username,String update,String Query)
     {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-//            System.exit(1);
-        }
-
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         try{
             preparedStatement = conection.prepareStatement(Query);
             preparedStatement.setString(1,update);
             preparedStatement.setString(2,username);
-
-            System.out.println("eije");
-            int a = preparedStatement.executeUpdate();
-            System.out.println("Update database " + a);
-
+            preparedStatement.executeUpdate();
         }
-        catch (SQLException e) {
-            e.printStackTrace();
+        catch (SQLException | NullPointerException exception) {
+            System.out.println(exception.getMessage());
         }
         finally {
             try {
                 preparedStatement.close();
                 conection.close();
-                //System.out.println("Yes in update database");
             }
-            catch (SQLException e) {
-                e.printStackTrace();
-            }
-            catch (NullPointerException e) {
-                System.out.println(e);
-            }
-            catch(Exception e) {
-                System.out.println(e);
+            catch (SQLException | NullPointerException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
 
+
     public void addCustomer(String username,String accountType,long accountNumber,double mainBalance,double balance,String email,long phone,String address)
     {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-//            System.exit(1);
-        }
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         String Query = "INSERT INTO Login_Info_For_Users(Username,AccountType,AccountNumber,MainBalance,Balance,Email," +
                 "Date_of_Account_Creation,WithdrawAmount,Time,phone,Address,Status) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -474,44 +352,24 @@ public class dbcontroller {
             preparedStatement.setString(12,"Unmatured");
             preparedStatement.executeUpdate();
         }
-        catch(SQLException exception)
+        catch(SQLException | NullPointerException exception)
         {
-            exception.printStackTrace();
-        }
-        catch(Exception exception)
-        {
-            exception.printStackTrace();
+            System.out.println(exception.getMessage());
         }
         finally {
             try {
                 preparedStatement.close();
                 conection.close();
-                //System.out.println("Yes in update database");
             }
-            catch (SQLException e) {
-                e.printStackTrace();
-            }
-            catch (NullPointerException e) {
-                System.out.println(e);
-            }
-            catch(Exception e) {
-                System.out.println(e);
+            catch (SQLException | NullPointerException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
 
     public void deleteAccount(long accountNumber)
     {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-//            System.exit(1);
-        }
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         String Query = "DELETE FROM Login_info_For_Users WHERE AccountNumber = ?";
         try{
@@ -519,11 +377,7 @@ public class dbcontroller {
             preparedStatement.setLong(1,accountNumber);
             preparedStatement.executeUpdate();
         }
-        catch(SQLException exception)
-        {
-            System.out.println(exception.getMessage());
-        }
-        catch(Exception exception)
+        catch(SQLException | NullPointerException exception)
         {
             System.out.println(exception.getMessage());
         }
@@ -531,32 +385,16 @@ public class dbcontroller {
             try {
                 preparedStatement.close();
                 conection.close();
-                //System.out.println("Yes in update database");
             }
-            catch (SQLException e) {
-                e.printStackTrace();
-            }
-            catch (NullPointerException e) {
-                System.out.println(e.getMessage());
-            }
-            catch(Exception e) {
-                System.out.println(e.getMessage());
+            catch (SQLException | NullPointerException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
 
     public void addEmployee(String username,String password,String designation)
     {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-//            System.exit(1);
-        }
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         String Query = "INSERT INTO admin_login(Username,PassWord,Designation) VALUES(?,?,?)";
         try
@@ -568,11 +406,7 @@ public class dbcontroller {
             preparedStatement.setString(3,designation);
             preparedStatement.executeUpdate();
         }
-        catch(SQLException exception)
-        {
-            System.out.println(exception.getMessage());
-        }
-        catch(Exception exception)
+        catch(SQLException | NullPointerException exception)
         {
             System.out.println(exception.getMessage());
         }
@@ -580,16 +414,9 @@ public class dbcontroller {
             try {
                 preparedStatement.close();
                 conection.close();
-                //System.out.println("Yes in update database");
             }
-            catch (SQLException e) {
-                System.out.printf(e.getMessage());
-            }
-            catch (NullPointerException e) {
-                System.out.println(e.getMessage());
-            }
-            catch(Exception e) {
-                System.out.println(e.getMessage());
+            catch (SQLException | NullPointerException exception) {
+                System.out.println(exception.getMessage());
             }
         }
 
@@ -597,19 +424,7 @@ public class dbcontroller {
 
     public boolean editCustomer(String username,String address,String email,long phone)
     {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-            return false;
-//            System.exit(1);
-        }
-
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         String Query = "UPDATE Login_Info_For_Users SET Username = ? ,Email = ? ,Address = ?,phone = ? WHERE" +
                 " AccountNumber = ?";
@@ -620,10 +435,7 @@ public class dbcontroller {
             preparedStatement.setString(3,address);
             preparedStatement.setLong(4,phone);
             preparedStatement.setLong(5,dbcontroller.getInstance().getCustomer().getAccount().getNumber());
-
-            System.out.println("eije");
             int a = preparedStatement.executeUpdate();
-            System.out.println("Update database " + a);
             if(a == 1)
             {
                 return true;
@@ -634,7 +446,7 @@ public class dbcontroller {
             }
 
         }
-        catch (SQLException exception) {
+        catch (SQLException | NullPointerException exception) {
             System.out.println(exception.getMessage());
             return false;
         }
@@ -642,15 +454,8 @@ public class dbcontroller {
             try {
                 preparedStatement.close();
                 conection.close();
-                //System.out.println("Yes in update database");
             }
-            catch (SQLException exception) {
-                System.out.println(exception.getMessage());
-            }
-            catch (NullPointerException exception) {
-                System.out.println(exception.getMessage());
-            }
-            catch(Exception exception) {
+            catch (SQLException | NullPointerException exception) {
                 System.out.println(exception.getMessage());
             }
         }
@@ -658,16 +463,7 @@ public class dbcontroller {
 
     public void deleteEmployee(String username)
     {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-//            System.exit(1);
-        }
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         String Query = "DELETE FROM admin_login WHERE Username = ?";
         try{
@@ -675,11 +471,7 @@ public class dbcontroller {
             preparedStatement.setString(1,username);
             preparedStatement.executeUpdate();
         }
-        catch(SQLException exception)
-        {
-            System.out.println(exception.getMessage());
-        }
-        catch(Exception exception)
+        catch(SQLException | NullPointerException exception)
         {
             System.out.println(exception.getMessage());
         }
@@ -687,16 +479,9 @@ public class dbcontroller {
             try {
                 preparedStatement.close();
                 conection.close();
-                //System.out.println("Yes in update database");
             }
-            catch (SQLException e) {
-                e.printStackTrace();
-            }
-            catch (NullPointerException e) {
-                System.out.println(e.getMessage());
-            }
-            catch(Exception e) {
-                System.out.println(e.getMessage());
+            catch (SQLException | NullPointerException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
@@ -704,19 +489,8 @@ public class dbcontroller {
 
     public void addTransaction(double previousBalance,double amount,String transactionType,Customer customer)
     {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-//            System.exit(1);
-        }
+        connectDatabase();
         PreparedStatement preparedStatement = null;
-        //String Query = "INSERT INTO Transaction (Username,AccountNumber,AccountType,TransactionType," +
-          //      "TransactionAmount,CurrentBalance,PreviousBalance,Date) VALUES(?,?,?,?,?,?,?,?)";
         String Query = "INSERT INTO trans(Username,AccountNumber,AccountType,TransactionType,TransactionAmount,CurrentBalance,PreviousBalance,Date) " +
                 "VALUES(?,?,?,?,?,?,?,?)";
         try
@@ -735,11 +509,7 @@ public class dbcontroller {
             preparedStatement.setString(8,formatter.format(date));
             preparedStatement.executeUpdate();
         }
-        catch(SQLException exception)
-        {
-            System.out.println(exception.getMessage());
-        }
-        catch(Exception exception)
+        catch(SQLException | NullPointerException exception)
         {
             System.out.println(exception.getMessage());
         }
@@ -747,33 +517,16 @@ public class dbcontroller {
             try {
                 preparedStatement.close();
                 conection.close();
-                //System.out.println("Yes in update database");
             }
-            catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-            catch (NullPointerException e) {
-                System.out.println(e.getMessage());
-            }
-            catch(Exception e) {
-                System.out.println(e.getMessage());
+            catch (SQLException | NullPointerException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
 
     public void limitsManager(String rate,String hour,String maxWithdraw,String minAmount,String Query,String type)
     {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-//            System.exit(1);
-        }
-
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         try{
             preparedStatement = conection.prepareStatement(Query);
@@ -782,30 +535,21 @@ public class dbcontroller {
             preparedStatement.setDouble(3,Double.parseDouble(maxWithdraw));
             preparedStatement.setDouble(4,Double.parseDouble(minAmount));
             preparedStatement.setString(5,type);
-
-            System.out.println("eije");
-            int a = preparedStatement.executeUpdate();
-            System.out.println("Update database " + a);
-
+            preparedStatement.executeUpdate();
         }
-        catch (SQLException exception) {
+        catch (SQLException | NullPointerException exception) {
             System.out.println(exception.getMessage());
         }
         finally {
             try {
                 preparedStatement.close();
                 conection.close();
-                //System.out.println("Yes in update database");
             }
-            catch (SQLException exception) {
-                System.out.println(exception.getMessage());
-            }
-            catch(Exception exception) {
+            catch (SQLException | NullPointerException exception) {
                 System.out.println(exception.getMessage());
             }
         }
     }
-
 }
 
 

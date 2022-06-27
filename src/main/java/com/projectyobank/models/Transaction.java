@@ -9,10 +9,9 @@ public class Transaction {
     public boolean withdraw(double amount,Customer customer)
     {
         Account account = customer.getAccount();
-        account.createBalance(account);
-        //Account account = dbcontroller.getInstance().getCustomer().getAccount();
+        account.createBalance();
         AlertGenerator alertGenerator = new AlertGenerator();
-        boolean indicator = false;
+        boolean indicator ;
         if(account.getType().equals("FixedDeposit") && account.getStatus().equals("Unmatured"))
         {
             indicator = alertGenerator.showErrorAlert("Withdraw Money","Your Fixed Deposit in not matured yet!!!");
@@ -29,8 +28,8 @@ public class Transaction {
         }
         else
         {
-           indicator =  alertGenerator.showConfirmationAlert("Withdraw Money","Tk." + amount + " will be debited from your account" +
-                    account.getNumber() + " and your balance will be" + (account.getBalance()-amount) + ".Do you" +
+           indicator =  alertGenerator.showConfirmationAlert("Withdraw Money","Tk." + amount + " will be debited from your account " +
+                    account.getNumber() + " and your balance will be " + (account.getBalance()-amount) + ".Do you" +
                     "confirm that transaction?");
         }
         if(indicator)
@@ -41,6 +40,7 @@ public class Transaction {
             {
                 account.setMain_balance(account.getBalance());
             }
+            account.setCurrent_withdraw_amount(amount+account.getCurrent_withdraw_amount());
             dbcontroller.getInstance().Update_Account(account);
             dbcontroller.getInstance().addTransaction(previousBalance,amount,"Debited",customer);
         }
@@ -50,11 +50,10 @@ public class Transaction {
     public void deposit(double amount,Customer customer)
     {
         Account account = customer.getAccount();
-        //Account account = dbcontroller.getInstance().getCustomer().getAccount();
-        account.createBalance(account);
+        account.createBalance();
         AlertGenerator alertGenerator = new AlertGenerator();
         if(alertGenerator.showConfirmationAlert("Deposit Money","Tk." + amount + " will be credited " +
-                "to your account "+ account.getNumber() + " and your balance will be" + (account.getBalance()+amount) +
+                "to your account "+ account.getNumber() + " and your balance will be " + (account.getBalance()+amount) +
                 ".Do you confirm that transaction?"))
         {
             if(account.getType().equals("FixedDeposit") && account.getStatus().equals("Unmatured"))
