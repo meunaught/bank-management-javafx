@@ -78,7 +78,6 @@ public class Account {
         hours = (date.getTime() - this.time.getTime())/(1000*60*60*1.0);
         dbcontroller.getInstance().SetProperties(this);
         hours /=this.interest.getRate_hour();
-        System.out.println(hours);
         if(hours>=1)
         {
             if(this.type.equals("Current"))

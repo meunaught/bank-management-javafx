@@ -55,5 +55,7 @@ abstract public class Banker{
     abstract public boolean add_Employee();
     abstract public boolean edit_Employee();
     abstract public boolean delete_Employee();
+    abstract public boolean limitsManger();
+    abstract public boolean makeTransaction();
 
 }

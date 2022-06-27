@@ -46,4 +46,16 @@ public class Senior_Officer extends Banker{
         alertGenerator.accessDenied();
         return false;
     }
+
+    @Override
+    public boolean limitsManger() {
+        AlertGenerator alertGenerator = new AlertGenerator();
+        alertGenerator.accessDenied();
+        return false;
+    }
+
+    @Override
+    public boolean makeTransaction() {
+        return true;
+    }
 }

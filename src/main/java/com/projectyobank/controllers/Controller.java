@@ -36,16 +36,6 @@ public class Controller {
         stage.setScene(scene);
         stage.show();
     }
-    public void giveFilename(String filename,ActionEvent e)
-    {
-        try {
-            switchToScene(filename,e);
-        }
-        catch (IOException ex) {
-            System.out.println(filename);
-            ex.printStackTrace();
-        }
-    }
 
     public void logoutButtonClick(ActionEvent e)
     {
@@ -61,12 +51,12 @@ public class Controller {
 
     public void transactionButtonClick(ActionEvent e)
     {
-        try{
-            switchToScene("view/transaction.fxml",e);
-        }
-        catch (IOException exception)
-        {
-            System.out.println(exception.getMessage());
+        if(dbcontroller.getInstance().getBanker().makeTransaction()) {
+            try {
+                switchToScene("view/transaction.fxml", e);
+            } catch (IOException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
     }
 
@@ -165,12 +155,12 @@ public class Controller {
 
     public void limitsManagerButtonClick(ActionEvent e)
     {
-        try{
-            switchToScene("view/limitsManager.fxml",e);
-        }
-        catch(IOException exception)
-        {
-            System.out.println(exception.getMessage());
+        if(dbcontroller.getInstance().getBanker().limitsManger()) {
+            try {
+                switchToScene("view/limitsManager.fxml", e);
+            } catch (IOException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
     }
 }

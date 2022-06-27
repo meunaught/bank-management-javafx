@@ -37,4 +37,14 @@ public class Manager extends Banker{
         return true;
     }
 
+    @Override
+    public boolean limitsManger() {
+        return true;
+    }
+
+    @Override
+    public boolean makeTransaction() {
+        return true;
+    }
+
 }

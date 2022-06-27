@@ -171,7 +171,6 @@ public class dbcontroller {
                 preparedStatement.close();
                 resultSet.close();
                 conection.close();
-                System.out.println("Yes in verify user login");
             }
             catch (SQLException | NullPointerException exception)
             {
@@ -238,7 +237,6 @@ public class dbcontroller {
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next())
             {
-                System.out.println("Set properties");
                 account.getInterest().setRate(resultSet.getDouble("InterestRate"));
                 account.getInterest().setRate_hour(resultSet.getDouble("InterestRateHour"));
                 account.setMax_withdraw_amount(resultSet.getDouble("MaxWithdraw"));
