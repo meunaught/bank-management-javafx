@@ -46,14 +46,4 @@ public class DeleteEmployeeController extends Controller implements Initializabl
         }
     }
 
-    public void previousButtonClick(ActionEvent e)
-    {
-        try{
-            switchToScene("view/Dashboard.fxml",e);
-        }
-        catch(IOException exception)
-        {
-            System.out.println(exception.getMessage());
-        }
-    }
 }

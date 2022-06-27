@@ -50,14 +50,4 @@ public class DepositPageController extends Controller implements Initializable{
         }
     }
 
-    public void previousButtonClick(ActionEvent e)
-    {
-        try{
-            switchToScene("view/transaction.fxml",e);
-        }
-        catch(IOException exception)
-        {
-            System.out.println(exception.getMessage());
-        }
-    }
 }

@@ -113,11 +113,6 @@
    <center>
       <AnchorPane prefHeight="652.0" prefWidth="940.0" BorderPane.alignment="CENTER">
          <children>
-            <JFXButton fx:id="PreviousButton" buttonType="RAISED" layoutX="280.0" layoutY="518.0" onAction="#previousButtonClick" prefHeight="70.0" prefWidth="190.0" text="Previous">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </JFXButton>
             <JFXTextField fx:id="AccountNumberField" layoutX="411.0" layoutY="158.0" prefHeight="35.0" prefWidth="298.0" promptText="Enter Account Number" />
             <JFXTextField fx:id="WithdrawAmountField" layoutX="411.0" layoutY="316.0" prefHeight="26.0" prefWidth="309.0" promptText="Enter Wihtdraw Amount" />
             <JFXButton fx:id="WithdrawButton" buttonType="RAISED" layoutX="747.0" layoutY="436.0" onAction="#withdrawButtonClick" prefHeight="50.0" prefWidth="146.0" text="Withdraw">
@@ -128,7 +123,7 @@
             <VBox prefHeight="646.0" prefWidth="214.0">
                <children>
                   <Separator prefWidth="200.0" />
-                  <JFXButton fx:id="AddAccountButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Add Account">
+                  <JFXButton fx:id="HomeButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#homeButtonClick" prefHeight="50.0" prefWidth="200.0" text="Home">
                      <graphic>
                         <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
                      </graphic>
@@ -139,7 +134,7 @@
                         <Insets right="40.0" />
                      </padding>
                   </JFXButton>
-                  <JFXButton fx:id="EditAccountButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#editAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Edit Account">
+                  <JFXButton fx:id="AddAccountButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#addAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Add Account">
                      <graphic>
                         <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
                      </graphic>
@@ -147,7 +142,7 @@
                         <Insets right="40.0" />
                      </padding>
                   </JFXButton>
-                  <JFXButton fx:id="DeleteAccountButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#deleteAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Delete Account">
+                  <JFXButton fx:id="EditAccountButton" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#editAccountButtonClick" prefHeight="50.0" prefWidth="200.0" text="Update Account">
                      <graphic>
                         <FontAwesomeIconView glyphName="PLUS" size="1.5em" />
                      </graphic>

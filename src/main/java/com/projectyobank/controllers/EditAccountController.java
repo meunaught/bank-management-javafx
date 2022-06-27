@@ -59,14 +59,4 @@ public class EditAccountController extends Controller implements Initializable{
         phone.setText(String.valueOf(dbcontroller.getInstance().getBanker().getCustomer().getPhone()));
     }
 
-    public void previousButtonClick(ActionEvent e)
-    {
-        try{
-            switchToScene("view/Edit_DeleteAccount.fxml",e);
-        }
-        catch(IOException exception)
-        {
-            System.out.println(exception.getMessage());
-        }
-    }
 }

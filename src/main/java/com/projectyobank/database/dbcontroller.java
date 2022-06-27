@@ -357,11 +357,10 @@ public class dbcontroller {
         }
     }
 
-    public void deleteAccount(long accountNumber)
+    public void deleteAccount(long accountNumber,String Query)
     {
         connectDatabase();
         PreparedStatement preparedStatement = null;
-        String Query = "DELETE FROM Login_info_For_Users WHERE AccountNumber = ?";
         try{
             preparedStatement = conection.prepareStatement(Query);
             preparedStatement.setLong(1,accountNumber);

@@ -16,17 +16,6 @@ public class TransactionPageController extends Controller implements Initializab
         Designation.setText(dbcontroller.getInstance().getBanker().getDesignation());
     }
 
-    public void previousButtonClick(ActionEvent e)
-    {
-        try{
-            switchToScene("view/Dashboard.fxml",e);
-        }
-        catch(IOException exception)
-        {
-            System.out.println(exception.getMessage());
-        }
-    }
-
     public void withdrawButtonClick(ActionEvent e)
     {
         try{

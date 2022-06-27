@@ -49,15 +49,4 @@ public class WithdrawPageController extends Controller implements Initializable{
             alertGenerator.showErrorAlert("Withdraw Money","Please enter appropriate values.");
         }
     }
-
-    public void previousButtonClick(ActionEvent e)
-    {
-        try{
-            switchToScene("view/transaction.fxml",e);
-        }
-        catch(IOException exception)
-        {
-            System.out.println(exception.getMessage());
-        }
-    }
 }

@@ -66,16 +66,4 @@ public class TransferFundPageController extends Controller implements Initializa
         }
     }
 
-
-    public void previousButtonClick(ActionEvent e)
-    {
-        try{
-            switchToScene("view/transaction.fxml",e);
-        }
-        catch(IOException exception)
-        {
-            System.out.println(exception.getMessage());
-        }
-    }
-
 }

@@ -56,7 +56,8 @@ public class Edit_DeleteAccountController extends Controller implements Initiali
             {
                 if(alertGenerator.showConfirmationAlert("Delete Account","Are you sure to delete the account?"))
                 {
-                    dbcontroller.getInstance().deleteAccount(accountNumber);
+                    dbcontroller.getInstance().deleteAccount(accountNumber,"DELETE FROM Login_info_For_Users WHERE AccountNumber = ?");
+                    dbcontroller.getInstance().deleteAccount(accountNumber,"DELETE FROM trans WHERE AccountNumber = ?");
                 }
             }
             else
@@ -68,17 +69,6 @@ public class Edit_DeleteAccountController extends Controller implements Initiali
         {
             alertGenerator.showErrorAlert("Delete Account","Account Number has to be a number");
             System.out.println(exception.getMessage());
-        }
-    }
-
-    public void previousButtonClick(ActionEvent e)
-    {
-        try{
-            switchToScene("view/Dashboard.fxml",e);
-        }
-        catch(IOException exception)
-        {
-            System.out.println( exception.getMessage());
         }
     }
 }

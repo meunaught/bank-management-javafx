@@ -161,17 +161,6 @@ public class LimitsManagerPageController extends  Controller implements Initiali
         alertGenerator.showInformationAlert("Limits Manager","Information updated successfully.");
     }
 
-    public void previousButtonClick(ActionEvent e)
-    {
-        try{
-            switchToScene("view/Dashboard.fxml",e);
-        }
-        catch(IOException exception)
-        {
-            System.out.println(exception.getMessage());
-        }
-    }
-
     private boolean temp(String rate,String hour,String maxWithdraw,String minAmount)
     {
         AlertGenerator alertGenerator = new AlertGenerator();
