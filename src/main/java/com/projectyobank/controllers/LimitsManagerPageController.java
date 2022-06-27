@@ -14,7 +14,7 @@ import java.net.URL;
 import java.sql.SQLOutput;
 import java.util.ResourceBundle;
 
-public class LimitsManagerPageController extends  BankerPageController {
+public class LimitsManagerPageController extends  Controller implements Initializable{
     @FXML
     private JFXTextField currentRate;
     @FXML

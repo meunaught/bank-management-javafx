@@ -11,9 +11,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Random;
+import java.util.ResourceBundle;
 
-public class AddCustomerController extends BankerPageController {
+public class AddCustomerController extends Controller implements Initializable{
     @FXML
     private JFXTextField username;
     @FXML
@@ -27,7 +29,11 @@ public class AddCustomerController extends BankerPageController {
     @FXML
     private JFXTextField balance;
 
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        BankerName.setText(dbcontroller.getInstance().getBanker().getUsername());
+        Designation.setText(dbcontroller.getInstance().getBanker().getDesignation());
+    }
 
     public void addCustomerButtonClick(ActionEvent e)
     {

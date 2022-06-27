@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditAccountController extends BankerPageController {
+public class EditAccountController extends Controller implements Initializable{
 
     @FXML
     private JFXTextField username;

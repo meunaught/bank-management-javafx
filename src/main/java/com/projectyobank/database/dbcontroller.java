@@ -17,12 +17,9 @@ public class dbcontroller {
     }
 
     private Banker banker;
-    //private Customer customer;
-
     public Banker getBanker() {
-        return banker;
+        return this.banker;
     }
-    //public Customer getCustomer(){return customer;}
 
 
     public static Connection Connector()

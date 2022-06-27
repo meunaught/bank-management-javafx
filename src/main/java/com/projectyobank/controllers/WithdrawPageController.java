@@ -12,12 +12,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class WithdrawPageController extends BankerPageController {
+public class WithdrawPageController extends Controller implements Initializable{
     @FXML
     private JFXTextField AccountNumberField;
     @FXML
     private JFXTextField WithdrawAmountField;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        BankerName.setText(dbcontroller.getInstance().getBanker().getUsername());
+        Designation.setText(dbcontroller.getInstance().getBanker().getDesignation());
+    }
 
     public void withdrawButtonClick(ActionEvent e)
     {
