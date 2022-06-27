@@ -72,7 +72,6 @@ public class dbcontroller {
                 String temp = resultSet.getString("Designation");
                 if(temp.compareToIgnoreCase("Manager") == 0)
                 {
-                    System.out.println("Manager");
                     banker = new Manager(resultSet.getString("Username"),
                             resultSet.getString("PassWord"),
                             resultSet.getString("Designation"));
@@ -202,7 +201,7 @@ public class dbcontroller {
 
                 banker.getCustomer().setAccount(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
                         resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
-                        resultSet.getDouble("WithdrawAmount"));
+                        resultSet.getDouble("WithdrawAmount"),resultSet.getString("Status"));
 
                 return true;
             }
@@ -220,7 +219,6 @@ public class dbcontroller {
                 preparedStatement.close();
                 resultSet.close();
                 conection.close();
-                System.out.println("Yes in  verify account");
             }
             catch (SQLException | NullPointerException exception) {
                 System.out.println(exception.getMessage());
@@ -546,17 +544,7 @@ public class dbcontroller {
     }
 
     public ArrayList<Customer> customerArrayList() {
-        try {
-            conection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-        conection = dbcontroller.Connector();
-        if (conection == null) {
-            System.out.println("connection not successful");
-//            System.exit(1);
-        }
+        connectDatabase();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String Query = "select * from Login_Info_For_Users";
@@ -571,25 +559,22 @@ public class dbcontroller {
 
                 banker.getCustomer().setAccount(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
                         resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
-                        resultSet.getDouble("WithdrawAmount"));
+                        resultSet.getDouble("WithdrawAmount"),resultSet.getString("Status"));
                 banker.getCustomerArrayList().add(banker.getCustomer());
             }
             return banker.getCustomerArrayList();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException  | NullPointerException exception) {
+            System.out.println(exception.getMessage());
         }
         finally {
             try {
                 preparedStatement.close();
                 resultSet.close();
                 conection.close();
-                System.out.println("Yes in  customerList generator");
             }
-            catch (SQLException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                System.out.println(e);
+            catch (SQLException | NullPointerException exception) {
+                System.out.println(exception.getMessage());
             }
         }
         return null;

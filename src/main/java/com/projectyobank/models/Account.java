@@ -25,7 +25,7 @@ public class Account {
         this.transaction = new Transaction();
     }
 
-    public Account(String type,long number,long time,double balance,double main_balance,double withdraw_amount)
+    public Account(String type,long number,long time,double balance,double main_balance,double withdraw_amount,String Status)
     {
         this.type = type;
         this.number = number;
@@ -35,7 +35,7 @@ public class Account {
         this.current_withdraw_amount = withdraw_amount;
         this.transaction = new Transaction();
         this.interest = new Interest();
-        this.Status = "Unmatured";
+        this.Status = Status;
     }
 
     public void setType(String type){this.type = type;}

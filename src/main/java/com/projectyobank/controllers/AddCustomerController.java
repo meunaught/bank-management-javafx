@@ -67,7 +67,7 @@ public class AddCustomerController extends Controller implements Initializable{
                     }
                 }
                 Customer customer = new Customer(username,email,phone,address);
-                customer.setAccount(accountType,accountNumber,System.currentTimeMillis(),balance,balance,0);
+                customer.setAccount(accountType,accountNumber,System.currentTimeMillis(),balance,balance,0,"Unmatured");
                 dbcontroller.getInstance().SetProperties(customer.getAccount());
                 if(customer.getAccount().getMinimum_amount_for_account_creation()>balance)
                 {

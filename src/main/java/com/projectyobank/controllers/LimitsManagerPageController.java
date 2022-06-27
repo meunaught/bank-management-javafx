@@ -71,7 +71,6 @@ public class LimitsManagerPageController extends  Controller implements Initiali
             account.setType("Current");
             dbcontroller.getInstance().SetProperties(account);
             currentRate.setText(String.valueOf(account.getInterest().getRate()));
-            System.out.println(String.valueOf(account.getInterest().getRate_hour()));
             currentHour.setText(String.valueOf(account.getInterest().getRate_hour()));
             currentMaximumWithdraw.setText(String.valueOf(account.getMax_withdraw_amount()));
             currentMinimumAmount.setText(String.valueOf(account.getMinimum_amount_for_account_creation()));

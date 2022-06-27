@@ -40,8 +40,8 @@ public class Customer{
     public void setAddress(String address){this.address = address;}
     public String getAddress(){return this.address;}
 
-    public void setAccount(String type,long number,long time,double balance,double main_Balance,double withdraw_amount){
-        this.account = new Account(type,number,time,balance,main_Balance,withdraw_amount);
+    public void setAccount(String type,long number,long time,double balance,double main_Balance,double withdraw_amount,String Status){
+        this.account = new Account(type,number,time,balance,main_Balance,withdraw_amount,Status);
     }
     public void setAccount(Account account){
         this.account = account;
