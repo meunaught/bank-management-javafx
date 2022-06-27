@@ -17,12 +17,12 @@ public class dbcontroller {
     }
 
     private Banker banker;
-    private Customer customer;
+    //private Customer customer;
 
     public Banker getBanker() {
         return banker;
     }
-    public Customer getCustomer(){return customer;}
+    //public Customer getCustomer(){return customer;}
 
 
     public static Connection Connector()
@@ -126,7 +126,6 @@ public class dbcontroller {
             preparedStatement = conection.prepareStatement(Query);
             preparedStatement.setString(1,Username);
             resultSet = preparedStatement.executeQuery();
-            System.out.println("verify te dhukse");
 
             if(resultSet.next()) {
                 return true;
@@ -161,7 +160,6 @@ public class dbcontroller {
             preparedStatement.setString(1,username);
             preparedStatement.setString(2,password);
             resultSet = preparedStatement.executeQuery();
-            System.out.println("verify te dhukse");
 
             if(resultSet.next()) {
                 return true;
@@ -202,10 +200,10 @@ public class dbcontroller {
 
             if(resultSet.next())
             {
-                customer = new Customer(resultSet.getString("Username"),resultSet.getString("email"),
+                banker.setCustomer(resultSet.getString("Username"),resultSet.getString("email"),
                         resultSet.getLong("phone"),resultSet.getString("Address"));
 
-                customer.setAccount(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
+                banker.getCustomer().setAccount(resultSet.getString("AccountType"),resultSet.getLong("AccountNumber"),
                         resultSet.getLong("Time"),resultSet.getDouble("Balance"),resultSet.getDouble("MainBalance"),
                         resultSet.getDouble("WithdrawAmount"));
 
@@ -213,7 +211,6 @@ public class dbcontroller {
             }
             else
             {
-                System.out.println("didn't find account number");
                 return false;
             }
 
@@ -434,7 +431,7 @@ public class dbcontroller {
             preparedStatement.setString(2,email);
             preparedStatement.setString(3,address);
             preparedStatement.setLong(4,phone);
-            preparedStatement.setLong(5,dbcontroller.getInstance().getCustomer().getAccount().getNumber());
+            preparedStatement.setLong(5,dbcontroller.getInstance().getBanker().getCustomer().getAccount().getNumber());
             int a = preparedStatement.executeUpdate();
             if(a == 1)
             {

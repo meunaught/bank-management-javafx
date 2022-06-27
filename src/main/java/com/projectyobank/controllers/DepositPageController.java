@@ -25,7 +25,7 @@ public class DepositPageController extends BankerPageController {
             double amount = Double.parseDouble(WithdrawAmountField.getText());
             if(dbcontroller.getInstance().Verify_Account(accountNumber))
             {
-                Customer customer = dbcontroller.getInstance().getCustomer();
+                Customer customer = dbcontroller.getInstance().getBanker().getCustomer();
                 customer.getAccount().getTransaction().deposit(amount,customer);
             }
             else

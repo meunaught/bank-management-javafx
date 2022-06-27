@@ -30,10 +30,10 @@ public class TransferFundPageController extends BankerPageController {
             Customer receiver;
             if(dbcontroller.getInstance().Verify_Account(payerAccountNumber))
             {
-                payer = dbcontroller.getInstance().getCustomer();
+                payer = dbcontroller.getInstance().getBanker().getCustomer();
                 if(dbcontroller.getInstance().Verify_Account(receiverAccountNumber))
                 {
-                    receiver = dbcontroller.getInstance().getCustomer();
+                    receiver = dbcontroller.getInstance().getBanker().getCustomer();
                     receiver.getAccount().getTransaction().TransferMoney(amount,payer,receiver);
                 }
                 else

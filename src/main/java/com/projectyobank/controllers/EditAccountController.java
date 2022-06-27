@@ -53,10 +53,10 @@ public class EditAccountController extends BankerPageController {
     public void initialize(URL location, ResourceBundle resources) {
         BankerName.setText(dbcontroller.getInstance().getBanker().getUsername());
         Designation.setText(dbcontroller.getInstance().getBanker().getDesignation());
-        username.setText(dbcontroller.getInstance().getCustomer().getUsername());
-        address.setText(dbcontroller.getInstance().getCustomer().getAddress());
-        email.setText(dbcontroller.getInstance().getCustomer().getEmail());
-        phone.setText(String.valueOf(dbcontroller.getInstance().getCustomer().getPhone()));
+        username.setText(dbcontroller.getInstance().getBanker().getCustomer().getUsername());
+        address.setText(dbcontroller.getInstance().getBanker().getCustomer().getAddress());
+        email.setText(dbcontroller.getInstance().getBanker().getCustomer().getEmail());
+        phone.setText(String.valueOf(dbcontroller.getInstance().getBanker().getCustomer().getPhone()));
     }
 
     public void previousButtonClick(ActionEvent e)
