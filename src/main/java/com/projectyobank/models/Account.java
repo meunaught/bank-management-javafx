@@ -80,13 +80,13 @@ public class Account {
         hours /=this.interest.getRate_hour();
         if(hours>=1)
         {
-            if(this.type.equals("Current"))
+            if(this.type.compareToIgnoreCase("Current") == 0)
             {
                 this.setBalance(this.interest.simple_interest(hours,this));
             }
-            else if(this.type.equals("FixedDeposit"))
+            else if(this.type.compareToIgnoreCase("FixedDeposit") == 0)
             {
-                if(this.Status.equals("Unmatured"))
+                if(this.Status.compareToIgnoreCase("Unmatured") == 0)
                 {
                     this.setStatus("Matured");
                     this.setBalance(this.interest.compound_interest(1,this));

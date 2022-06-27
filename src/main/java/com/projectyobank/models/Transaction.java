@@ -12,7 +12,7 @@ public class Transaction {
         account.createBalance();
         AlertGenerator alertGenerator = new AlertGenerator();
         boolean indicator ;
-        if(account.getType().equals("FixedDeposit") && account.getStatus().equals("Unmatured"))
+        if(account.getType().compareToIgnoreCase("FixedDeposit") == 0 && account.getStatus().equals("Unmatured"))
         {
             indicator = alertGenerator.showErrorAlert("Withdraw Money","Your Fixed Deposit in not matured yet!!!");
         }
@@ -56,7 +56,7 @@ public class Transaction {
                 "to your account "+ account.getNumber() + " and your balance will be " + (account.getBalance()+amount) +
                 ".Do you confirm that transaction?"))
         {
-            if(account.getType().equals("FixedDeposit") && account.getStatus().equals("Unmatured"))
+            if(account.getType().compareToIgnoreCase("FixedDeposit") == 0 && account.getStatus().equals("Unmatured"))
             {
                 alertGenerator.showErrorAlert("Deposit Money","Your Fixed Deposit is not matured yet!!!");
                 return ;
@@ -73,12 +73,12 @@ public class Transaction {
     public void TransferMoney(double amount,Customer payer,Customer receiver)
     {
         AlertGenerator alertGenerator = new AlertGenerator();
-        if(payer.getAccount().getType().equals("FixedDeposit"))
+        if(payer.getAccount().getType().compareToIgnoreCase("FixedDeposit") == 0)
         {
             alertGenerator.showErrorAlert("Transfer Money","You can't transfer money from your fixed deposit!!!");
             return ;
         }
-        else if(receiver.getAccount().getType().equals("FixedDeposit"))
+        else if(receiver.getAccount().getType().compareToIgnoreCase("FixedDeposit") == 0)
         {
             alertGenerator.showErrorAlert("Transfer Money","You can't transfer money to fixed deposit accounts!!!");
             return ;

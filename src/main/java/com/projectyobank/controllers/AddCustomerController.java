@@ -48,8 +48,9 @@ public class AddCustomerController extends Controller implements Initializable{
             if (username.isEmpty() || accountType.isEmpty() || address.isEmpty() || email.isEmpty()) {
                 alertGenerator.showErrorAlert("New Customer","Every box has to be filled ");
             }
-            else if(!(accountType.equals("Current")|| accountType.equals("Savings") || accountType.equals("Islamic")
-            || accountType.equals("FixedDeposit")||accountType.equals("CreditCard")))
+            else if((accountType.compareToIgnoreCase("Current") != 0 && accountType.compareToIgnoreCase("Savings") != 0 &&
+                    accountType.compareToIgnoreCase("Islamic") != 0
+            && accountType.compareToIgnoreCase("FixedDeposit") != 0 && accountType.compareToIgnoreCase("CreditCard") != 0))
             {
                 alertGenerator.showErrorAlert("New Customer","Please Enter Validated Account Type");
             }
